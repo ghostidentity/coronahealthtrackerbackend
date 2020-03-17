@@ -1,7 +1,9 @@
 package me.mtagab;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import lombok.extern.slf4j.Slf4j;
+import me.mtagab.controller.AccountController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,6 +18,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+@Slf4j
 @EnableScheduling
 @SpringBootApplication
 @EnableDiscoveryClient
@@ -25,7 +28,7 @@ public class AccountApp implements CommandLineRunner {
         SpringApplication.run(AccountApp.class, args);
     }
 
-    private static final Log log = LogFactory.getLog(AccountApp.class);
+    private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 
     @Bean
     public RestTemplate restTemplate() {
@@ -44,6 +47,6 @@ public class AccountApp implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        log.info("AccountApp Started! ");
+        logger.info("Account Service has been Started");
     }
 }

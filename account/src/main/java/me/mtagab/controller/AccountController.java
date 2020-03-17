@@ -44,8 +44,7 @@ public class AccountController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<String> findAll() {
-
-        System.out.println("Message from config" + config.getMessage());
+        logger.info("Message from config" + config.getMessage());
         String url = "http://person:8080/health/1";
         return restTemplate.getForEntity(url, String.class);
     }
@@ -71,7 +70,7 @@ public class AccountController {
 
     @GetMapping("/services")
     public String getServices() {
-        String serviceList = "";
+        StringBuilder serviceList = new StringBuilder();
         if (discoveryClient != null) {
             List<String> services = this.discoveryClient.getServices();
 
@@ -79,9 +78,9 @@ public class AccountController {
 
                 List<ServiceInstance> instances = this.discoveryClient.getInstances(service);
 
-                serviceList += ("[" + service + " : " + ((!CollectionUtils.isEmpty(instances)) ? instances.size() : 0) + " instances ]");
+                serviceList.append("[").append(service).append(" : ").append((!CollectionUtils.isEmpty(instances)) ? instances.size() : 0).append(" instances ]");
             }
         }
-        return serviceList;
+        return serviceList.toString();
     }
 }
