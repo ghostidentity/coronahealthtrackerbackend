@@ -4,7 +4,7 @@ metadata:
   name: healthtracker
   namespace: default
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   backend:
     serviceName: website
@@ -13,11 +13,11 @@ spec:
     - host: viper
       http:
         paths:
-          - path: /account
+          - path: /account(/|$)(.*)
             backend:
               serviceName: account
               servicePort: 8080
-          - path: /government
+          - path: /government(/|$)(.*)
             backend:
               serviceName: government
               servicePort: 8080
@@ -37,7 +37,7 @@ spec:
             backend:
               serviceName: hospital
               servicePort: 8080
-          - path: /person
+          - path: /person(/|$)(.*)
             backend:
               serviceName: person
               servicePort: 8080

@@ -7,7 +7,7 @@ data:
   database_name: account
   database_host: 10.110.1.0
   application.properties: |-
-    welcome.message=Hello Youtube from app.properties
+    welcome.message=AccountService
     message=Hi from app.properties
 ---
 apiVersion: v1
