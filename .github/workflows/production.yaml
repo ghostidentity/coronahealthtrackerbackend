@@ -19,10 +19,6 @@ jobs:
         run: |
           mvn -B package --file ./account/pom.xml
           mv ./account/target/*.jar ./account/target/account.jar
-      - name: Gateway Service
-        run: |
-          mvn -B package --file ./gateway/pom.xml
-          mv ./gateway/target/*.jar ./gateway/target/gateway.jar
       - name: Government Service
         run: |
           mvn -B package --file ./government/pom.xml
@@ -47,20 +43,11 @@ jobs:
         run: |
           mvn -B package --file ./travel/pom.xml
           mv ./travel/target/*.jar ./travel/target/travel.jar
-      - name: UI Service
-        run: |
-          mvn -B package --file ./website/pom.xml
-          mv ./travel/target/*.jar ./travel/target/travel.jar
       - name: Account Packager
         uses: actions/upload-artifact@v1
         with:
           name: Account
           path: ./account/target/account.jar
-      - name: Gateway Packager
-        uses: actions/upload-artifact@v1
-        with:
-          name: Gateway
-          path: ./gateway/target/gateway.jar
       - name: Government Packager
         uses: actions/upload-artifact@v1
         with:
@@ -109,12 +96,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mvn clean deploy --file ./account/pom.xml
-      - name: Deploying Gateway Service
-        env:
-          GITHUB_USERNAME: x-access-token
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          mvn clean deploy --file ./gateway/pom.xml
       - name: Deploying Government Service
         env:
           GITHUB_USERNAME: x-access-token

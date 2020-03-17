@@ -40,9 +40,6 @@ jobs:
       - name: Account Service
         run: |
           mvn test --file ./account/pom.xml
-      - name: Gateway Service
-        run: |
-          mvn test --file ./gateway/pom.xml
       - name: Government Service
         run: |
           mvn test --file ./government/pom.xml
@@ -61,9 +58,6 @@ jobs:
       - name: User Service
         run: |
           mvn test --file ./person/pom.xml
-      - name: UI Service
-        run: |
-          mvn test --file ./website/pom.xml
   docker:
     runs-on: [ubuntu-latest]
     steps:
@@ -76,21 +70,11 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Building website image ...
-        run: |
-          mvn clean --file ./website/pom.xml
-          mvn -B package --file ./website/pom.xml
-          docker build ./website -t mtagab/website:latest
       - name: Building account image ...
         run: |
           mvn clean --file ./account/pom.xml
           mvn -B package --file ./account/pom.xml
           docker build ./account -t mtagab/account:latest
-      - name: Building gateway image ...
-        run: |
-          mvn clean --file ./gateway/pom.xml
-          mvn -B package --file ./gateway/pom.xml
-          docker build ./gateway -t mtagab/gateway:latest
       - name: Building government image ...
         run: |
           mvn clean --file ./government/pom.xml
@@ -128,11 +112,9 @@ jobs:
         run:  |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
           docker push mtagab/account:latest
-          docker push mtagab/gateway:latest
           docker push mtagab/government:latest
           docker push mtagab/infection:latest
           docker push mtagab/notification:latest
           docker push mtagab/security:latest
           docker push mtagab/hospital:latest
           docker push mtagab/person:latest
-          docker push mtagab/website:latest
