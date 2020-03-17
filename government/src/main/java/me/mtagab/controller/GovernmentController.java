@@ -52,7 +52,7 @@ public class GovernmentController {
         return new ResponseEntity<>(config.getService(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/admission_request", method = RequestMethod.POST)
+    @RequestMapping(value = "/admission_request", method = RequestMethod.GET)
     public ResponseEntity<String> requestAdmission() {
         return new ResponseEntity<>(config.getIssue(), HttpStatus.NOT_IMPLEMENTED);
     }
