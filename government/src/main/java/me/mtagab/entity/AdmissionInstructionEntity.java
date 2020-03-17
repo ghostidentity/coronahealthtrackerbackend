@@ -22,9 +22,11 @@ public class AdmissionInstructionEntity {
     @Column(name = "validatedBy")
     private Integer validatedBy;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "requestedOn")
     private Date requestedOn;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "pickupDateTime")
     private Date pickupDateTime;
 
