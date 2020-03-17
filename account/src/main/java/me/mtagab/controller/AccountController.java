@@ -7,13 +7,16 @@ import me.mtagab.repository.PhotoRepository;
 import me.mtagab.repository.UsersRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -41,6 +44,7 @@ public class AccountController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<String> findAll() {
+
         System.out.println("Message from config" + config.getMessage());
         String url = "http://person:8080/health/1";
         return restTemplate.getForEntity(url, String.class);
@@ -63,5 +67,21 @@ public class AccountController {
         logger.info("Received: " + userId);
         logger.info("User Controller " + usersRepository.findAll());
         return new ResponseEntity<>("User Controller", HttpStatus.OK);
+    }
+
+    @GetMapping("/services")
+    public String getServices() {
+        String serviceList = "";
+        if (discoveryClient != null) {
+            List<String> services = this.discoveryClient.getServices();
+
+            for (String service : services) {
+
+                List<ServiceInstance> instances = this.discoveryClient.getInstances(service);
+
+                serviceList += ("[" + service + " : " + ((!CollectionUtils.isEmpty(instances)) ? instances.size() : 0) + " instances ]");
+            }
+        }
+        return serviceList;
     }
 }
