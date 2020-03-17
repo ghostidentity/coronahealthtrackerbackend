@@ -1,0 +1,41 @@
+apiVersion: skaffold/v1
+kind: Config
+build:
+  artifacts:
+    - image: mtagab/account
+      context: account
+      docker:
+        dockerfile: Dockerfile
+    - image: mtagab/government
+      context: government
+      docker:
+        dockerfile: Dockerfile
+    - image: mtagab/hospital
+      context: hospital
+      docker:
+        dockerfile: Dockerfile
+    - image: mtagab/infection
+      context: infection
+      docker:
+        dockerfile: Dockerfile
+    - image: mtagab/notification
+      context: notification
+      docker:
+        dockerfile: Dockerfile
+    - image: mtagab/person
+      context: person
+      docker:
+        dockerfile: Dockerfile
+    - image: mtagab/security
+      context: security
+      docker:
+        dockerfile: Dockerfile
+  tagPolicy:
+      sha256: {}
+  local: {}
+
+deploy:
+  kubectl:
+    manifests:
+      - deploy.yaml
+
