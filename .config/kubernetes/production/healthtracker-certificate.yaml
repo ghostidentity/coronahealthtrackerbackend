@@ -1,0 +1,21 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: mtagab.me.tls
+spec:
+  secretName: mtagab.me
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: mtagab.me
+  dnsName:
+    - mtagab.me
+    - www.mtagab.me
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - mtagab.me
+          - www.mtagab.me
+

@@ -1,0 +1,204 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: account
+  name: accountapp
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      run: account
+  replicas: 1
+  template:
+    metadata:
+      name: account
+      labels:
+        run: account
+        app: account
+    spec:
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: healthtracker-pv-claim
+      containers:
+        - name: account-container
+          image: mtagab/account:latest
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          imagePullPolicy: Always
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: account-credential
+                  key: database-user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: account-credential
+                  key: database-password
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: account-config
+                  key: database_host
+            - name: POSTGRES_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: account-config
+                  key: database_name
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            periodSeconds: 15
+            timeoutSeconds: 1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: account
+  labels:
+    app: account
+spec:
+  selector:
+    app: account
+  ports:
+    - name: account
+      port: 8080
+      targetPort: 8080
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: website
+  name: websiteapp
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      run: website
+  replicas: 1
+  template:
+    metadata:
+      name: website
+      labels:
+        run: website
+        app: website
+    spec:
+      containers:
+        - name: frontend-container
+          image: mtagab/frontend:latest
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+              name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: website
+  labels:
+    app: website
+spec:
+  selector:
+    app: website
+  ports:
+    - name: website
+      port: 8080
+      targetPort: 8080
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: person
+  name: personapp
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      run: person
+  replicas: 1
+  template:
+    metadata:
+      name: person
+      labels:
+        run: person
+        app: person
+    spec:
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: healthtracker-pv-claim
+      containers:
+        - name: person-container
+          image: mtagab/person:latest
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          imagePullPolicy: Always
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: account-credential
+                  key: database-user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: account-credential
+                  key: database-password
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: person-config
+                  key: database_host
+            - name: POSTGRES_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: person-config
+                  key: database_name
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            periodSeconds: 15
+            timeoutSeconds: 1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: person
+  labels:
+    app: person
+spec:
+  selector:
+    app: person
+  ports:
+    - name: person
+      port: 8080
+      targetPort: 8080
+      protocol: TCP
+  type: ClusterIP

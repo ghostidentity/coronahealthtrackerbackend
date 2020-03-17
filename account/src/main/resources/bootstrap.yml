@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    kubernetes:
+      config:
+        enabled: true
+        sources:
+          - namespace: default
+            name: account
+      reload:
+        enabled: true
+        mode: polling
+        strategy: restart_context
+ribbon:
+  http:
+    client:
+      enabled: true

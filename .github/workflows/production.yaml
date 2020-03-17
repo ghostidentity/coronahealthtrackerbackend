@@ -1,0 +1,153 @@
+name: Health Tracker CI - Deployer
+
+on:
+  push:
+    branches: [ production ]
+  pull_request:
+    branches: [ production]
+
+jobs:
+  package:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Account Service
+        run: |
+          mvn -B package --file ./account/pom.xml
+          mv ./account/target/*.jar ./account/target/account.jar
+      - name: Gateway Service
+        run: |
+          mvn -B package --file ./gateway/pom.xml
+          mv ./gateway/target/*.jar ./gateway/target/gateway.jar
+      - name: Government Service
+        run: |
+          mvn -B package --file ./government/pom.xml
+          mv ./government/target/*.jar ./government/target/government.jar
+      - name: Infection Service
+        run: |
+          mvn -B package --file ./infection/pom.xml
+          mv ./infection/target/*.jar ./infection/target/infection.jar
+      - name: Hospital Service
+        run: |
+          mvn -B package --file ./hospital/pom.xml
+          mv ./notification/target/*.jar ./notification/target/notification.jar
+      - name: Notification Service
+        run: |
+          mvn -B package --file ./notification/pom.xml
+          mv ./notification/target/*.jar ./notification/target/notification.jar
+      - name: Security Service
+        run: |
+          mvn -B package --file ./security/pom.xml
+          mv ./security/target/*.jar ./security/target/security.jar
+      - name: User Service
+        run: |
+          mvn -B package --file ./travel/pom.xml
+          mv ./travel/target/*.jar ./travel/target/travel.jar
+      - name: UI Service
+        run: |
+          mvn -B package --file ./website/pom.xml
+          mv ./travel/target/*.jar ./travel/target/travel.jar
+      - name: Account Packager
+        uses: actions/upload-artifact@v1
+        with:
+          name: Account
+          path: ./account/target/account.jar
+      - name: Gateway Packager
+        uses: actions/upload-artifact@v1
+        with:
+          name: Gateway
+          path: ./gateway/target/gateway.jar
+      - name: Government Packager
+        uses: actions/upload-artifact@v1
+        with:
+          name: Government
+          path: ./government/target/government.jar
+      - name: Infection Packager
+        uses: actions/upload-artifact@v1
+        with:
+          name: Infection
+          path: ./infection/target/infection.jar
+      - name: Notification Packager
+        uses: actions/upload-artifact@v1
+        with:
+          name: Notification
+          path: ./notification/target/notification.jar
+      - name: Security Packager
+        uses: actions/upload-artifact@v1
+        with:
+          name: Security
+          path: ./security/target/security.jar
+      - name: Hpspital Packager
+        uses: actions/upload-artifact@v1
+        with:
+          name: Hospital
+          path: ./hospital/target/hospital.jar
+      - name: User Packager
+        uses: actions/upload-artifact@v1
+        with:
+          name: Security
+          path: ./user/target/user.jar
+  deploy:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: setup-maven-settings
+        uses: s4u/maven-settings-action@v1
+        with:
+          servers: '[{"id": "github", "username": "x-access-token", "password": "${GITHUB_TOKEN}"}]'
+      - name: Deploying Account Service
+        env:
+          GITHUB_USERNAME: x-access-token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mvn clean deploy --file ./account/pom.xml
+      - name: Deploying Gateway Service
+        env:
+          GITHUB_USERNAME: x-access-token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mvn clean deploy --file ./gateway/pom.xml
+      - name: Deploying Government Service
+        env:
+          GITHUB_USERNAME: x-access-token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mvn clean deploy --file ./government/pom.xml
+      - name: Deploying Infection Service
+        env:
+          GITHUB_USERNAME: x-access-token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mvn clean deploy --file ./infection/pom.xml
+      - name: Deploying Notification Service
+        env:
+          GITHUB_USERNAME: x-access-token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mvn clean deploy --file ./notification/pom.xml
+      - name: Deploying Security Service
+        env:
+          GITHUB_USERNAME: x-access-token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mvn clean deploy --file ./security/pom.xml
+      - name: Deploying Hospital Service
+        env:
+          GITHUB_USERNAME: x-access-token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mvn clean deploy --file ./hospital/pom.xml
+      - name: Deploying User Service
+        env:
+          GITHUB_USERNAME: x-access-token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mvn clean deploy --file ./user/pom.xml

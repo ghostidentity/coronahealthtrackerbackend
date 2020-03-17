@@ -1,0 +1,17 @@
+minikube --memory 8192 --cpus 2 start
+
+
+
+minikube addons enable ingress
+kubectl get pods -n kube-system
+kubectl create clusterrolebinding admin --clusterrole=cluster-admin --serviceaccount=default:default
+
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.30.0/deploy/static/provider/baremetal/service-nodeport.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.30.0/deploy/static/mandatory.yaml
+
+kubectl get pods --all-namespaces -l app.kubernetes.io/name=ingress-nginx --watch
+
+
+#docker run --publish=8081:8081 mtagab/account:latest
+#kubectl port-forward frontendapp-5f748bcc9b-j2tlx 8080:8080
