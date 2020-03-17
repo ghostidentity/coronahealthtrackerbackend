@@ -20,7 +20,7 @@ public class AdmissionInstructionEntity {
     private String status;
 
     @Column(name = "validatedBy")
-    private Integer validatedBy;
+    private Long validatedBy;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "requestedOn")
