@@ -15,6 +15,8 @@ An application that will allow government agencies to track person(s) suspected 
         - Framework
             - Spring Boot
             - Spring Cloud
+                - Ribbon
+                - Hystrix
     - User Interface
         - Framework
             - React
