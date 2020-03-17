@@ -11,7 +11,7 @@ public class PublicAdvisoryEntity {
     private String advisory;
 
     @Column(name = "createdBy")
-    private String createdBy;
+    private Long createdBy;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "createdOn")

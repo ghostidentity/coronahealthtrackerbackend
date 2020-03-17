@@ -18,7 +18,7 @@ public class TravelAlertLocalEntity {
     private String location;
 
     @Column(name = "createdBy")
-    private  Integer createdBy;
+    private  Long createdBy;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "createdOn")

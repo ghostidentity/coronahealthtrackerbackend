@@ -8,7 +8,7 @@ import java.util.Date;
 public class AdmissionRequestEntity {
 
     @Column(name = "userId")
-    private Integer userId;
+    private Long userId;
 
     @Column(name = "status")
     private String status;
