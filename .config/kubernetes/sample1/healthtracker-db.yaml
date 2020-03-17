@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: postgres
+  name: postgres
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      run: postgres
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: postgres
+        app: postgres
+    spec:
+      volumes:
+        - name: postgresdb
+          persistentVolumeClaim:
+            claimName: healthtracker-pv-claim
+      containers:
+        - name: postgres
+          image: mtagab/trackerdb:latest
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: account-credential
+                  key: database-user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: account-credential
+                  key: database-password
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5432
+              name: postgresdb
+          volumeMounts:
+            - name: postgresdb
+              mountPath: /var/lib/postgresql/data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  labels:
+    app: postgres
+spec:
+  selector:
+    app: postgres
+  clusterIP: 10.110.1.0
+  ports:
+    - port: 5432
+      targetPort: 5432
+      name: postgres
+      protocol: TCP
+  type: ClusterIP

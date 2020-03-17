@@ -1,0 +1,43 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: healthtracker
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  backend:
+    serviceName: website
+    servicePort: 8080
+  rules:
+    - host: viper
+      http:
+        paths:
+          - path: /account
+            backend:
+              serviceName: account
+              servicePort: 8080
+          - path: /government
+            backend:
+              serviceName: government
+              servicePort: 8080
+          - path: /infection
+            backend:
+              serviceName: infection
+              servicePort: 8080
+          - path: /notification
+            backend:
+              serviceName: notification
+              servicePort: 8080
+          - path: /security
+            backend:
+              serviceName: security
+              servicePort: 8080
+          - path: /hospital
+            backend:
+              serviceName: hospital
+              servicePort: 8080
+          - path: /user
+            backend:
+              serviceName: user
+              servicePort: 8080

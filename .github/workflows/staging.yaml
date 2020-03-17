@@ -1,0 +1,138 @@
+name: Health Tracker CI - Builder
+
+on:
+  push:
+    branches: [ staging ]
+  pull_request:
+    branches: [ staging]
+
+jobs:
+  debug:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Building account and pushing account image ...
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          mvn clean --file ./account/pom.xml
+          mvn -B package --file ./account/pom.xml
+          docker build ./account -t mtagab/account:latest
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+          docker push mtagab/account:latest
+  test:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: 13.x
+      - name: Account Service
+        run: |
+          mvn test --file ./account/pom.xml
+      - name: Gateway Service
+        run: |
+          mvn test --file ./gateway/pom.xml
+      - name: Government Service
+        run: |
+          mvn test --file ./government/pom.xml
+      - name: Infection Service
+        run: |
+          mvn test --file ./infection/pom.xml
+      - name: Notification Service
+        run: |
+          mvn test --file ./notification/pom.xml
+      - name: Security Service
+        run: |
+          mvn test --file ./security/pom.xml
+      - name: Hospital Service
+        run: |
+          mvn test --file ./hospital/pom.xml
+      - name: User Service
+        run: |
+          mvn test --file ./person/pom.xml
+      - name: UI Service
+        run: |
+          mvn test --file ./website/pom.xml
+  docker:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+            node-version: '13.x'
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Building website image ...
+        run: |
+          mvn clean --file ./website/pom.xml
+          mvn -B package --file ./website/pom.xml
+          docker build ./website -t mtagab/website:latest
+      - name: Building account image ...
+        run: |
+          mvn clean --file ./account/pom.xml
+          mvn -B package --file ./account/pom.xml
+          docker build ./account -t mtagab/account:latest
+      - name: Building gateway image ...
+        run: |
+          mvn clean --file ./gateway/pom.xml
+          mvn -B package --file ./gateway/pom.xml
+          docker build ./gateway -t mtagab/gateway:latest
+      - name: Building government image ...
+        run: |
+          mvn clean --file ./government/pom.xml
+          mvn -B package --file ./government/pom.xml
+          docker build ./government -t mtagab/government:latest
+      - name: Building infection image ...
+        run: |
+          mvn clean --file ./infection/pom.xml
+          mvn -B package --file ./infection/pom.xml
+          docker build ./infection -t mtagab/infection:latest
+      - name: Building notification image ...
+        run: |
+          mvn clean --file ./notification/pom.xml
+          mvn -B package --file ./notification/pom.xml
+          docker build ./notification -t mtagab/notification:latest
+      - name: Building security image ...
+        run: |
+          mvn clean --file ./security/pom.xml
+          mvn -B package --file ./security/pom.xml
+          docker build ./security -t mtagab/security:latest
+      - name: Building hospital image ...
+        run: |
+          mvn clean --file ./hospital/pom.xml
+          mvn -B package --file ./hospital/pom.xml
+          docker build ./hospital -t mtagab/hospital:latest
+      - name: Building person image ...
+        run: |
+          mvn clean --file ./person/pom.xml
+          mvn -B package --file ./person/pom.xml
+          docker build ./person -t mtagab/person:latest
+      - name: Pushing images to docker
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run:  |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+          docker push mtagab/account:latest
+          docker push mtagab/gateway:latest
+          docker push mtagab/government:latest
+          docker push mtagab/infection:latest
+          docker push mtagab/notification:latest
+          docker push mtagab/security:latest
+          docker push mtagab/hospital:latest
+          docker push mtagab/person:latest
+          docker push mtagab/website:latest

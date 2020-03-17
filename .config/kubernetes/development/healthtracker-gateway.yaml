@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway
+  namespace: default
+  labels:
+    app: gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gateway
+      run: gateway
+  template:
+    metadata:
+      name: gateway
+      labels:
+        run: gateway
+        app: gateway
+    spec:
+      containers:
+        - name: gateway
+          image: mtagab/gateway:latest
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway
+  labels:
+    app: gateway
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+  selector:
+    app: gateway
+  type: NodePort
