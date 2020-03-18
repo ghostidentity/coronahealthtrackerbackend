@@ -27,6 +27,10 @@ spring:
     validate-on-migrate: true
   profiles:
     active: kubernetes
+  cloud:
+    kubernetes:
+      reload:
+        enabled: true
 server:
   port: 8080
   error:
@@ -44,3 +48,8 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+      enabled: true
+    info:
+      enabled: true
+    restart:
+      enabled: true
