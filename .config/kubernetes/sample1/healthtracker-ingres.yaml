@@ -10,7 +10,7 @@ spec:
     serviceName: website
     servicePort: 8080
   rules:
-    - host: mtagab.local
+    - host: viper
       http:
         paths:
           - path: /account(/|$)(.*)

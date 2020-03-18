@@ -9,9 +9,9 @@ import me.mtagab.repository.TravelRepository;
 import me.mtagab.service.GovernmentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
@@ -45,8 +45,9 @@ public class PersonController {
     private PersonConfig config;
 
     @RequestMapping(value = "/admission", method = RequestMethod.GET)
-    public String requestAdmission() {
-        return governmentService.requestAdmission();
+    public ResponseEntity<String>  requestAdmission() {
+        logger.info("Test: " + governmentService.requestAdmission());
+        return new ResponseEntity<>(governmentService.requestAdmission(), HttpStatus.OK);
     }
 
     @GetMapping("/")

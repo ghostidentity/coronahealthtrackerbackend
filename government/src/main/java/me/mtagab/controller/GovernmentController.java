@@ -51,8 +51,8 @@ public class GovernmentController {
 
     @RequestMapping(value = "/admission_request", method = RequestMethod.GET)
     public String requestAdmission() {
-        logger.info("Admission request called.");
-        return config.getIssue();
+        logger.info("Admission request called by client..");
+        return "Sample";
     }
 
     @RequestMapping(value = "/admission_request", method = RequestMethod.POST)
