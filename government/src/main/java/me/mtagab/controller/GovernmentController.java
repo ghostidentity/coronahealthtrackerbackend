@@ -54,6 +54,7 @@ public class GovernmentController {
 
     @RequestMapping(value = "/admission_request", method = RequestMethod.GET)
     public ResponseEntity<String> requestAdmission() {
+        logger.info("Admission request called.");
         return new ResponseEntity<>(config.getIssue(), HttpStatus.NOT_IMPLEMENTED);
     }
 

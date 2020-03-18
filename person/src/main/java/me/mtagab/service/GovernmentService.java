@@ -1,0 +1,23 @@
+package me.mtagab.service;
+
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import org.springframework.web.client.RestTemplate;
+
+public class GovernmentService {
+
+    private final RestTemplate restTemplate;
+
+    public GovernmentService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
+    @HystrixCommand(fallbackMethod = "getFallbackName", commandProperties = {
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000") })
+    public String getDeals() {
+        return this.restTemplate.getForObject("http://government:8080/admission_request", String.class);
+    }
+
+    private String getFallbackName() {
+        return "Fallback";
+    }
+}

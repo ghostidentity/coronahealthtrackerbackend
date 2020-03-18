@@ -48,3 +48,9 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+
+
+ribbon:
+  http:
+    client:
+      enabled: true
