@@ -5,13 +5,12 @@ import me.mtagab.entity.JournalEntity;
 import me.mtagab.repository.HealthRepository;
 import me.mtagab.repository.JournalRepository;
 import me.mtagab.repository.TravelRepository;
+import me.mtagab.service.GovernmentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
@@ -30,6 +29,15 @@ public class PersonController {
 
     @Resource
     private TravelRepository travelRepository;
+
+    @Resource
+    private GovernmentService governmentService;
+
+
+    @RequestMapping(value = "/admission", method = RequestMethod.POST)
+    public String requestAdmission() {
+        return governmentService.requestAdmission();
+    }
 
     @GetMapping("/")
     public Iterable<JournalEntity> getJournal() {

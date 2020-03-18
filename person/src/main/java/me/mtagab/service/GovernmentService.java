@@ -14,7 +14,7 @@ public class GovernmentService {
 
     @HystrixCommand(fallbackMethod = "getFallbackName", commandProperties = {
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000") })
-    public String getDeals() {
+    public String requestAdmission() {
         return this.restTemplate.getForObject("http://government:8080/admission_request", String.class);
     }
 
