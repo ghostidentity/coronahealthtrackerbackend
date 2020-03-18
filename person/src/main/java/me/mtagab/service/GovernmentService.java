@@ -1,6 +1,7 @@
 package me.mtagab.service;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.web.client.RestTemplate;
 
 public class GovernmentService {
