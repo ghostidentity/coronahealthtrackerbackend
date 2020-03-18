@@ -1,4 +1,4 @@
-package me.mtagab.service;
+package me.mtagab.controller;
 
 import me.mtagab.model.Credential;
 import org.springframework.beans.factory.annotation.Value;
