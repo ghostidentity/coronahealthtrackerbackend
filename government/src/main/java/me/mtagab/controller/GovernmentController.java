@@ -44,18 +44,15 @@ public class GovernmentController {
     @Resource
     private GovernmentConfig config;
 
-    @Resource
-    private RestTemplate restTemplate;
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<String> showService() {
         return new ResponseEntity<>(config.getService(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/admission_request", method = RequestMethod.GET)
-    public ResponseEntity<String> requestAdmission() {
+    public String requestAdmission() {
         logger.info("Admission request called.");
-        return new ResponseEntity<>(config.getIssue(), HttpStatus.NOT_IMPLEMENTED);
+        return config.getIssue();
     }
 
     @RequestMapping(value = "/admission_request", method = RequestMethod.POST)

@@ -63,6 +63,8 @@ metadata:
 data:
   database_name: person
   database_host: 10.110.1.0
+  application.properties: |-
+    bean.message=Testing reload ! Message from backend is: %s <br/> Services : %s
 ---
 apiVersion: v1
 kind: ConfigMap

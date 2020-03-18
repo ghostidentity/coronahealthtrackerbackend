@@ -1,5 +1,8 @@
 package me.mtagab;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
@@ -15,12 +18,16 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableCircuitBreaker
 @EnableSwagger2
 @RibbonClient(name = "government", configuration = RibbonConfiguration.class)
 public class PersonApp {
+
+    private static final Logger logger = LoggerFactory.getLogger(PersonApp.class);
+
     public static void main(String[] args) {
         SpringApplication.run(PersonApp.class, args);
     }
@@ -31,7 +38,6 @@ public class PersonApp {
         return new RestTemplate();
     }
 
-
     @Bean
     public Docket swaggerApi() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -41,4 +47,5 @@ public class PersonApp {
                 .build()
                 .apiInfo(new ApiInfoBuilder().version("1.0").title("Person API").description("Documentation Person API v1.0").build());
     }
+
 }

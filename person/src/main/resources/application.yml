@@ -44,13 +44,14 @@ logging:
 
 management:
   endpoint:
-    restart:
-      enabled: true
     health:
-      enabled: true
       show-details: ALWAYS
+      enabled: true
     info:
       enabled: true
+    restart:
+      enabled: true
+  endpoints:
     web:
       exposure:
         include: info,health,flyway

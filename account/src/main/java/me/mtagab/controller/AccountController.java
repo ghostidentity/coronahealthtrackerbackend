@@ -44,7 +44,6 @@ public class AccountController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<String> findAll() {
-        logger.info("Message from config" + config.getMessage());
         String url = "http://person:8080/health/1";
         return restTemplate.getForEntity(url, String.class);
     }

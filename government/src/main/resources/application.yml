@@ -31,6 +31,8 @@ spring:
     kubernetes:
       reload:
         enabled: true
+      secrets:
+        name:  account-credential
 server:
   port: 8080
   error:
@@ -41,15 +43,14 @@ logging:
     console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
 
 management:
-  endpoints:
-    web:
-      exposure:
-        include: info,health,flyway
   endpoint:
     health:
-      show-details: ALWAYS
       enabled: true
     info:
       enabled: true
     restart:
       enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: info,health,flyway
