@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({ "com.mtagab.controller" })
+@ComponentScan({ "me.mtagab.controller" })
 public class ResourceServerWebConfig implements WebMvcConfigurer {
     //
 }
