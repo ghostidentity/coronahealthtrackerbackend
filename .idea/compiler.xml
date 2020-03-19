@@ -6,17 +6,23 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="auth-client" />
         <module name="security" />
         <module name="government" />
         <module name="account" />
         <module name="person" />
+        <module name="auth-server" />
         <module name="hospital" />
         <module name="infection" />
         <module name="notification" />
+        <module name="auth-resource" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="account" target="1.8" />
+      <module name="auth-client" target="1.8" />
+      <module name="auth-resource" target="1.8" />
+      <module name="auth-server" target="1.8" />
       <module name="government" target="1.8" />
       <module name="hospital" target="1.8" />
       <module name="infection" target="1.8" />
@@ -29,6 +35,9 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="account" options="-parameters" />
+      <module name="auth-client" options="-parameters" />
+      <module name="auth-resource" options="-parameters" />
+      <module name="auth-server" options="-parameters" />
       <module name="government" options="-parameters" />
       <module name="hospital" options="-parameters" />
       <module name="infection" options="-parameters" />

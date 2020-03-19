@@ -1,0 +1,15 @@
+# Make the application available at http://localhost:7070/authserver
+server:
+  port: 7070
+  servlet:
+    context-path: /authserver
+    session:
+      cookie:
+        name: OAUTH2SESSION
+
+spring:
+  application:
+    name: server
+
+
+
