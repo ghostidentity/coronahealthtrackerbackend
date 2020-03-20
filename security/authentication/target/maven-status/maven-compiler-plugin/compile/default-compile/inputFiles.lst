@@ -1,0 +1,13 @@
+/home/mtagab/Documents/projects/ncov/security/authentication/src/main/java/me/mtagab/config/WebSecurityConfig.java
+/home/mtagab/Documents/projects/ncov/security/authentication/src/main/java/me/mtagab/filter/CorsFilter.java
+/home/mtagab/Documents/projects/ncov/security/authentication/src/main/java/me/mtagab/enhancer/CustomTokenEnhancer.java
+/home/mtagab/Documents/projects/ncov/security/authentication/src/main/java/me/mtagab/AuthorizationServerApplication.java
+/home/mtagab/Documents/projects/ncov/security/authentication/src/main/java/me/mtagab/entity/RolesEntity.java
+/home/mtagab/Documents/projects/ncov/security/authentication/src/main/java/me/mtagab/entity/CredentialsEntity.java
+/home/mtagab/Documents/projects/ncov/security/authentication/src/main/java/me/mtagab/repository/RolesRepository.java
+/home/mtagab/Documents/projects/ncov/security/authentication/src/main/java/me/mtagab/repository/CredentialsRepository.java
+/home/mtagab/Documents/projects/ncov/security/authentication/src/main/java/me/mtagab/endpoint/RevokeTokenEndpoint.java
+/home/mtagab/Documents/projects/ncov/security/authentication/src/main/java/me/mtagab/config/AuthServerConfigurer.java
+/home/mtagab/Documents/projects/ncov/security/authentication/src/main/java/me/mtagab/controller/TokenController.java
+/home/mtagab/Documents/projects/ncov/security/authentication/src/main/java/me/mtagab/controller/EmployeeController.java
+/home/mtagab/Documents/projects/ncov/security/authentication/src/main/java/me/mtagab/model/Employee.java
