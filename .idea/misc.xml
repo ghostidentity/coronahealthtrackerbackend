@@ -6,10 +6,13 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/person/pom.xml" />
         <option value="$PROJECT_DIR$/notification/pom.xml" />
-        <option value="$PROJECT_DIR$/auth-server/pom.xml" />
-        <option value="$PROJECT_DIR$/auth-resource/pom.xml" />
         <option value="$PROJECT_DIR$/auth-client/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/security/test/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectKey">
