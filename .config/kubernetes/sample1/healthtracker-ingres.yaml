@@ -29,10 +29,14 @@ spec:
             backend:
               serviceName: notification
               servicePort: 8080
-          - path: /security
+          - path: /authentication
             backend:
-              serviceName: security
-              servicePort: 8080
+              serviceName: authentication
+              servicePort: 7070
+          - path: /resource
+            backend:
+              serviceName: resource
+              servicePort: 9000
           - path: /hospital
             backend:
               serviceName: hospital
@@ -40,8 +44,4 @@ spec:
           - path: /person(/|$)(.*)
             backend:
               serviceName: person
-              servicePort: 8080
-          - path: /gateway
-            backend:
-              serviceName: gateway
               servicePort: 8080
