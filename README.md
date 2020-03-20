@@ -33,6 +33,8 @@ An application that will allow government agencies to track person(s) suspected 
         - Flyway
     - Continous Integration / Deployment
         - Circle CI
+    - Security
+        - Oath2 
 
 *Modules*:
 
