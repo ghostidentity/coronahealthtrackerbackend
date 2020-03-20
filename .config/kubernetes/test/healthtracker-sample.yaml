@@ -311,7 +311,7 @@ spec:
         - name: resource-container
           image: mtagab/resource:latest
           ports:
-            - name: resource_port
+            - name: resource
               containerPort: 9000
               protocol: TCP
           imagePullPolicy: Always
@@ -330,7 +330,7 @@ spec:
         - name: authentication-container
           image: mtagab/authentication:latest
           ports:
-            - name: auth_port
+            - name: authenticate
               containerPort: 7070
               protocol: TCP
           imagePullPolicy: Always
