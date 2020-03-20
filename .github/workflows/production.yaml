@@ -35,10 +35,14 @@ jobs:
         run: |
           mvn -B package --file ./notification/pom.xml
           mv ./notification/target/*.jar ./notification/target/notification.jar
-      - name: Security Service
+      - name: Authentication Service
         run: |
-          mvn -B package --file ./security/pom.xml
-          mv ./security/target/*.jar ./security/target/security.jar
+          mvn -B package --file ./security/authentication/pom.xml
+          mv ./security/target/*.jar ./security/authentication/target/authentication.jar
+      - name: Resource Service
+        run: |
+          mvn -B package --file ./security/resource/pom.xml
+          mv ./security/target/*.jar ./security/resource/target/resource.jar
       - name: User Service
         run: |
           mvn -B package --file ./travel/pom.xml
@@ -63,11 +67,16 @@ jobs:
         with:
           name: Notification
           path: ./notification/target/notification.jar
-      - name: Security Packager
+      - name: Authentication Packager
         uses: actions/upload-artifact@v1
         with:
-          name: Security
-          path: ./security/target/security.jar
+          name: Authentication
+          path: ./security/authentication/target/authentication.jar
+      - name: Resource Packager
+        uses: actions/upload-artifact@v1
+        with:
+          name: Resource
+          path: ./security/resource/target/resource.jar
       - name: Hpspital Packager
         uses: actions/upload-artifact@v1
         with:
@@ -114,12 +123,18 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mvn clean deploy --file ./notification/pom.xml
-      - name: Deploying Security Service
+      - name: Deploying Authentication Service
         env:
           GITHUB_USERNAME: x-access-token
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          mvn clean deploy --file ./security/pom.xml
+          mvn clean deploy --file ./security/authentication/pom.xml
+      - name: Deploying Resource Service
+        env:
+          GITHUB_USERNAME: x-access-token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mvn clean deploy --file ./security/resource/pom.xml
       - name: Deploying Hospital Service
         env:
           GITHUB_USERNAME: x-access-token
