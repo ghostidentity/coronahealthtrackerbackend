@@ -44,7 +44,8 @@ An application that will allow government agencies to track person(s) suspected 
     - Infection Service
     - Notification Service
     - Person Service
-    - Security Service
+    - Authentication Service
+    - Resource Service
 
 *Architect: Mark Tagab*
 
