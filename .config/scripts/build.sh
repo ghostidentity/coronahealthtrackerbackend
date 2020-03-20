@@ -44,11 +44,22 @@ cd ../hospital
 mvn clean install
 docker build -t mtagab/hospital:latest .
 
+#AUTHENTICATION SECTION
+cd ../security
+cd ./authentication
+mvn clean install
+docker build -t mtagab/authentication:latest .
+
+#RESOURCE SECTION
+cd ../security/resource
+cd ./resource
+mvn clean install
+docker build -t mtagab/resource:latest .
+
 #WEBSITE SECTION
 cd ../website
 mvn clean install
 docker build -t mtagab/website:latest .
-
 
 clear
 echo "images has been built."

@@ -11,3 +11,6 @@ docker pull mtagab/security:latest
 docker pull mtagab/website:latest
 docker pull mtagab/person:latest
 docker pull mtagab/hospital:latest
+docker pull mtagab/authentication:latest
+docker pull mtagab/resource:latest
+

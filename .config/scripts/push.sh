@@ -10,5 +10,7 @@ docker push mtagab/security
 docker push mtagab/hospital
 docker push mtagab/person
 docker push mtagab/website
+docker push mtagab/authentication
+docker push mtagab/resource
 
 docker container prune --force
