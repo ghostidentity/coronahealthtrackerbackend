@@ -49,9 +49,12 @@ jobs:
       - name: Notification Service
         run: |
           mvn test --file ./notification/pom.xml
-      - name: Security Service
+      - name: Authentication Service
         run: |
-          mvn test --file ./security/pom.xml
+          mvn test --file ./security/authentication/pom.xml
+      - name: Resource Service
+        run: |
+          mvn test --file ./security/resource/pom.xml
       - name: Hospital Service
         run: |
           mvn test --file ./hospital/pom.xml
@@ -90,11 +93,16 @@ jobs:
           mvn clean --file ./notification/pom.xml
           mvn -B package --file ./notification/pom.xml
           docker build ./notification -t mtagab/notification:latest
-      - name: Building security image ...
+      - name: Building authentication image ...
         run: |
-          mvn clean --file ./security/pom.xml
-          mvn -B package --file ./security/pom.xml
-          docker build ./security -t mtagab/security:latest
+          mvn clean --file ./security/authentication/pom.xml
+          mvn -B package --file ./security/authentication/pom.xml
+          docker build ./security/authentication -t mtagab/authentication:latest
+      - name: Building resource image ...
+        run: |
+          mvn clean --file ./security/resource/pom.xml
+          mvn -B package --file ./security/resource/pom.xml
+          docker build ./security/resource -t mtagab/resource:latest
       - name: Building hospital image ...
         run: |
           mvn clean --file ./hospital/pom.xml
@@ -115,6 +123,7 @@ jobs:
           docker push mtagab/government:latest
           docker push mtagab/infection:latest
           docker push mtagab/notification:latest
-          docker push mtagab/security:latest
+          docker push mtagab/authentication:latest
+          docker push mtagab/resource:latest
           docker push mtagab/hospital:latest
           docker push mtagab/person:latest
