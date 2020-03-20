@@ -1,38 +1,8 @@
 spring:
+  application:
+    name: authentication
   profiles:
-    active: "kubernetes"
-  main:
-    banner-mode: "off"
-
----
-spring:
-  application:
-    name: authentication
-  profiles: dev
-
-  flyway:
-    enabled: true
-    user: postgres
-    password:
-    url: jdbc:postgresql://localhohst:5432/postgres
-    schemas: security
-    connectRetries: 10
-    installed-by: mtagab
-    locations: classpath:db/migration
-    validate-on-migrate: true
-
-server:
-  port: 7070
-  servlet:
-    context-path: /authserver
-    session:
-      cookie:
-        name: OAUTH2SESSION
----
-spring:
-  application:
-    name: authentication
-  profiles: kubernetes
+    active: kubernetes
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://${POSTGRES_HOST}:5432/${POSTGRES_DATABASE}
