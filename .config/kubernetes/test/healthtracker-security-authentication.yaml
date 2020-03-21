@@ -2,33 +2,26 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: security
-  name: securityapp
+    app: authentication
+  name: authenticationapp
   namespace: default
 spec:
   selector:
     matchLabels:
-      run: security
+      run: authentication
   replicas: 1
   template:
     metadata:
-      name: security
+      name: authentication
       labels:
-        run: security
-        app: security
+        run: authentication
+        app: authentication
     spec:
       volumes:
         - name: postgres-storage
           persistentVolumeClaim:
             claimName: healthtracker-pv-claim
       containers:
-        - name: resource-container
-          image: mtagab/resource:latest
-          ports:
-            - name: resource
-              containerPort: 9000
-              protocol: TCP
-          imagePullPolicy: Always
         - name: authentication-container
           image: mtagab/authentication:latest
           ports:
@@ -61,19 +54,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: security
+  name: authentication
   labels:
-    app: security
+    app: authentication
 spec:
   selector:
-    app: security
+    app: authentication
   ports:
     - name: authentication
       port: 7070
       targetPort: 7070
-      protocol: TCP
-    - name: resource
-      port: 9000
-      targetPort: 9000
       protocol: TCP
   type: ClusterIP

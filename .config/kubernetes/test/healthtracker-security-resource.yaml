@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: resource
+  name: resourceapp
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      run: resource
+  replicas: 1
+  template:
+    metadata:
+      name: resource
+      labels:
+        run: resource
+        app: resource
+    spec:
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: healthtracker-pv-claim
+      containers:
+        - name: resource-container
+          image: mtagab/resource:latest
+          ports:
+            - name: resource
+              containerPort: 9000
+              protocol: TCP
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: resource
+  labels:
+    app: resource
+spec:
+  selector:
+    app: resource
+  ports:
+    - name: resource
+      port: 9000
+      targetPort: 9000
+      protocol: TCP
+  type: ClusterIP
