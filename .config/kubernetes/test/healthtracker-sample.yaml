@@ -99,8 +99,8 @@ spec:
         app: website
     spec:
       containers:
-        - name: frontend-container
-          image: mtagab/frontend:latest
+        - name: website-container
+          image: mtagab/website:latest
           ports:
             - containerPort: 8080
               protocol: TCP
