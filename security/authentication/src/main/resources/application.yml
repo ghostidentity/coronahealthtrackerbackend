@@ -50,7 +50,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: *
+        include: info,health,flyway,refresh,keepalive
   endpoint:
     health:
       enabled: true
