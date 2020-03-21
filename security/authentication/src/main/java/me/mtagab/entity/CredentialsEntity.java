@@ -7,8 +7,8 @@ import java.util.Date;
 @Table(name = "credentials", schema = "authentication")
 public class CredentialsEntity {
 
-    @Column(name = "address")
-    private String address;
+    @Column(name = "username")
+    private String username;
 
     @Column(name = "password")
     private String password;
@@ -18,6 +18,9 @@ public class CredentialsEntity {
 
     @Column(name = "rolesId")
     private Integer rolesId;
+
+    @Column(name = "isActivated")
+    private boolean isActivated;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "registeredOn")

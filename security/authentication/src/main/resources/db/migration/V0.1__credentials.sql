@@ -3,8 +3,8 @@ create table credentials (
     username           varchar(255)    NOT NULL,
     password           varchar(255)    NOT NULL,
     accountType        varchar(255)    NOT NULL,
-    rolesId            varchar(255)    NOT NULL,
-    isActivated        varchar(255)    NOT NULL,
+    rolesId            int             NOT NULL,
+    isActivated        boolean         NOT NULL,
     registeredOn       date            DEFAULT  CURRENT_DATE NOT NULL,
     status             varchar(255)    NOT NULL
 );
