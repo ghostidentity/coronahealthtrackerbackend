@@ -92,6 +92,4 @@
         <h2database.version>1.4.200</h2database.version>
         <spring-jdbc.version>5.1.4.RELEASE</spring-jdbc.version>
     </properties>
-
-
 </project>
