@@ -1,4 +1,5 @@
 FROM library/postgres:latest
-MAINTAINER Mark Tagab <proxyshadow@gmail.com>
+LABEL maintainer="proxyshadow@gmail.com"
 COPY init.sql /docker-entrypoint-initdb.d/
+RUN echo "database scripts been copied"
 EXPOSE 5432
