@@ -50,6 +50,18 @@ spec:
                 configMapKeyRef:
                   name: resource-config
                   key: database_name
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 9000
+            initialDelaySeconds: 5
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 9000
+            periodSeconds: 15
+            timeoutSeconds: 1
 ---
 apiVersion: v1
 kind: Service
