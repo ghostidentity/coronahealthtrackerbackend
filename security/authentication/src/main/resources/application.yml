@@ -50,11 +50,14 @@ management:
   endpoints:
     web:
       exposure:
-        include: info,health,flyway,refresh,keepalive
+        include: *
   endpoint:
     health:
       enabled: true
+      show-details: always
     info:
       enabled: true
     restart:
+      enabled: true
+    beans:
       enabled: true
