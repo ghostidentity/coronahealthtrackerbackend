@@ -29,18 +29,6 @@ spec:
               containerPort: 9000
               protocol: TCP
           imagePullPolicy: Always
-          livenessProbe:
-            httpGet:
-              path: /resource/actuator/health
-              port: 9000
-            initialDelaySeconds: 5
-            periodSeconds: 15
-          readinessProbe:
-            httpGet:
-              path: /resource/actuator/health
-              port: 9000
-            periodSeconds: 15
-            timeoutSeconds: 1
         - name: authentication-container
           image: mtagab/authentication:latest
           ports:
