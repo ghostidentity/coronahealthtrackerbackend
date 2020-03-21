@@ -3,7 +3,7 @@ package me.mtagab.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "roles", schema = "security")
+@Table(name = "roles", schema = "authentication")
 public class RolesEntity {
 
     @Column(name = "scopes")
