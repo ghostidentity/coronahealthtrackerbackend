@@ -102,7 +102,7 @@ spec:
         - name: website-container
           image: mtagab/website:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 80
               protocol: TCP
               name: http
 ---
