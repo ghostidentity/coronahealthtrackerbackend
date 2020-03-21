@@ -34,7 +34,7 @@ spring:
 
 server:
   servlet:
-    context-path: /authserver
+    context-path: /
     session:
       cookie:
         name: OAUTH2SESSION
