@@ -1,15 +1,11 @@
 server:
   port: 9000
   servlet:
-    context-path: /resource
+    context-path: /
 
 spring:
   application:
     name: resource
-  cloud:
-    kubernetes:
-      discovery:
-        all-namespaces: true
 
 logging:
   pattern:
@@ -24,6 +20,4 @@ management:
     health:
       enabled: true
     info:
-      enabled: true
-    restart:
       enabled: true
