@@ -20,6 +20,9 @@ An application that will allow government agencies to track person(s) suspected 
     - User Interface
         - Framework
             - React
+                - Axios
+                - Redux
+                - Material UI
     - Mobile
         - Android
     - Database
