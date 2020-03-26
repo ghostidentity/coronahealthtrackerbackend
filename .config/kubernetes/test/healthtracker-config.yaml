@@ -107,3 +107,11 @@ metadata:
 data:
   authorization_server: 10.110.2.0
   resource_server: 10.110.3.0
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: website-config
+  namespace: default
+data:
+  redirection_uri: 10.110.4.0

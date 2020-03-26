@@ -116,6 +116,11 @@ spec:
                 configMapKeyRef:
                   name: skeleton-config
                   key: resource_server
+            - name: REDIRECTION
+              valueFrom:
+                configMapKeyRef:
+                  name: website-config
+                  key: redirection_uri
           livenessProbe:
             httpGet:
               path: /actuator/health
@@ -138,6 +143,7 @@ metadata:
 spec:
   selector:
     app: website
+  clusterIP: 10.110.4.0
   ports:
     - name: http
       port: 8080
