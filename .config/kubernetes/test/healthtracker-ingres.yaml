@@ -4,7 +4,7 @@ metadata:
   name: healthtracker
   namespace: default
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   backend:
     serviceName: website

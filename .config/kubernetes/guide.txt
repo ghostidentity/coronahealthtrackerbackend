@@ -19,4 +19,4 @@ kubectl get pods --all-namespaces -l app.kubernetes.io/name=ingress-nginx --watc
 
 ENABLE FORWARDING (FOR DEVELOPMENT)
 #docker run --publish=8081:8081 mtagab/account:latest
-#kubectl port-forward frontendapp-5f748bcc9b-j2tlx 8080:8080
+#kubectl port-forward websiteapp-77bf78b7bd-95wpn 8080:80
