@@ -55,12 +55,12 @@ spec:
               path: /actuator/health
               port: 9000
             initialDelaySeconds: 5
-            periodSeconds: 15
+            periodSeconds: 30
           readinessProbe:
             httpGet:
               path: /actuator/health
               port: 9000
-            periodSeconds: 15
+            periodSeconds: 30
             timeoutSeconds: 1
 ---
 apiVersion: v1
