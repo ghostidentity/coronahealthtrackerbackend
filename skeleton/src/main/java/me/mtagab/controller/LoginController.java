@@ -43,7 +43,7 @@ public class LoginController {
         clientRegistrations.forEach(registration -> oauth2AuthenticationUrls.put(registration.getClientName(), authorizationRequestBaseUri + "/" + registration.getRegistrationId()));
         model.addAttribute("urls", oauth2AuthenticationUrls);
 
-        return "oauth_login";
+        return "login";
     }
 
     @GetMapping("/main")
@@ -69,6 +69,6 @@ public class LoginController {
             model.addAttribute("name", userAttributes.get("name"));
         }
 
-        return "loginSuccess";
+        return "main";
     }
 }
