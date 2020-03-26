@@ -61,6 +61,9 @@ jobs:
       - name: User Service
         run: |
           mvn test --file ./person/pom.xml
+      - name: Skeleton Service
+        run: |
+          mvn test --file ./skeleton/pom.xml
   docker:
     runs-on: [ubuntu-latest]
     steps:
@@ -73,6 +76,11 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      - name: Building skeleton image ...
+        run: |
+          mvn clean --file ./skeleton/pom.xml
+          mvn -B package --file ./skeleton/pom.xml
+          docker build ./skeleton -t mtagab/skeleton:latest
       - name: Building account image ...
         run: |
           mvn clean --file ./account/pom.xml
@@ -119,6 +127,7 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run:  |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+          docker push mtagab/skeleton:latest
           docker push mtagab/account:latest
           docker push mtagab/government:latest
           docker push mtagab/infection:latest

@@ -9,5 +9,6 @@ mvn clean install --file ./notification/pom.xml
 mvn clean install --file ./person/pom.xml
 mvn clean install --file ./security/authentication/pom.xml
 mvn clean install --file ./security/resource/pom.xml
+mvn clean install --file ./security/skeleton/pom.xml
 
 skaffold build

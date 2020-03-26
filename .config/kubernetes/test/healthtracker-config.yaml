@@ -98,3 +98,12 @@ metadata:
 data:
   database_name: resource
   database_host: 10.110.1.0
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: skeleton-config
+  namespace: default
+data:
+  authorization_server: 10.110.2.0
+  resource_server: 10.110.3.0

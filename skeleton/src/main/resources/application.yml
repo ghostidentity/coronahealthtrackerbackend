@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: skeleton
+  security:
+    oauth2:
+      client:
+        registration:
+          custom:
+            client-id: authserverD
+            client-secret: authserverDPass
+            scope: read,write,foo
+            authorization-grant-type: authorization_code
+            redirect-uri: http://viper/login/oauth2/code/custom
+        provider:
+          custom:
+            authorization-uri: http://${AUTHORIZATION_SERVER}:7070/authserver/oauth/authorize
+            token-uri: http:// ${AUTHORIZATION_SERVER}:7070/authserver/oauth/token
+            user-info-uri: http://${RESOURCE_SERVER}:9000/resource/users/extra
+            user-name-attribute: user_name
+  profiles:
+    active: kubernetes
+  thymeleaf:
+    cache: false
+logging:
+  level:
+    org.org.springframework: INFO
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+  error:
+    include-stacktrace: on_trace_param
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,flyway,refresh,keepalive
+  endpoint:
+    health:
+      enabled: true
+    info:
+      enabled: true
+    restart:
+      enabled: true

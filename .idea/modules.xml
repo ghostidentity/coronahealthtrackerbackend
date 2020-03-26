@@ -13,6 +13,7 @@
       <module fileurl="file://$PROJECT_DIR$/person/person.iml" filepath="$PROJECT_DIR$/person/person.iml" />
       <module fileurl="file://$PROJECT_DIR$/security/resource/resource.iml" filepath="$PROJECT_DIR$/security/resource/resource.iml" />
       <module fileurl="file://$PROJECT_DIR$/security/security.iml" filepath="$PROJECT_DIR$/security/security.iml" />
+      <module fileurl="file://$PROJECT_DIR$/skeleton/skeleton.iml" filepath="$PROJECT_DIR$/skeleton/skeleton.iml" />
     </modules>
   </component>
 </project>

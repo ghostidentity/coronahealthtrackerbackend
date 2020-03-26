@@ -18,6 +18,7 @@
         <module name="person" />
         <module name="hospital" />
         <module name="infection" />
+        <module name="skeleton" />
         <module name="notification" />
       </profile>
     </annotationProcessing>
@@ -35,6 +36,7 @@
       <module name="person" target="1.8" />
       <module name="resource" target="1.8" />
       <module name="security" target="1.8" />
+      <module name="skeleton" target="1.8" />
       <module name="test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -52,6 +54,7 @@
       <module name="person" options="-parameters" />
       <module name="resource" options="-parameters" />
       <module name="security" options="-parameters" />
+      <module name="skeleton" options="-parameters" />
       <module name="test" options="-parameters" />
     </option>
   </component>

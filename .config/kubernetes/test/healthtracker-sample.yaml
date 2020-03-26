@@ -100,11 +100,33 @@ spec:
     spec:
       containers:
         - name: website-container
-          image: mtagab/website:latest
+          image: mtagab/skeleton:latest
           ports:
-            - containerPort: 80
+            - name: http
+              containerPort: 80
               protocol: TCP
-              name: http
+            - name: AUTHORIZATION_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  name: skeleton-config
+                  key: authorization_server
+            - name: RESOURCE_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  name: skeleton-config
+                  key: resource_server
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            periodSeconds: 15
+            timeoutSeconds: 1
 ---
 apiVersion: v1
 kind: Service
@@ -116,9 +138,9 @@ spec:
   selector:
     app: website
   ports:
-    - name: website
-      port: 80
-      targetPort: 80
+    - name: http
+      port: 8080
+      targetPort: 8080
       protocol: TCP
   type: ClusterIP
 ---

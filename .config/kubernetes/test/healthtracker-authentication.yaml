@@ -72,6 +72,7 @@ metadata:
 spec:
   selector:
     app: authentication
+  clusterIP: 10.110.2.0
   ports:
     - name: authentication
       port: 7070
