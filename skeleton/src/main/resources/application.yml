@@ -10,7 +10,7 @@ spring:
             client-secret: authserverDPass
             scope: read,write,foo
             authorization-grant-type: authorization_code
-            redirect-uri: http://viper/login/oauth2/code/custom
+            redirect-uri: http://viper/main
         provider:
           custom:
             authorization-uri: http://${AUTHORIZATION_SERVER}:7070/authserver/oauth/authorize
