@@ -45,7 +45,7 @@ public class AuthServerConfigurer extends AuthorizationServerConfigurerAdapter {
                 .autoApprove(false)
                 .accessTokenValiditySeconds(3600)       // 1 hour
                 .refreshTokenValiditySeconds(2592000)  // 30 days
-                .redirectUris("http://localhost:8080/login/oauth2/code/custom");
+                .redirectUris("http://viper/login/oauth2/code/custom");
     } // @formatter:on
 
     @Bean

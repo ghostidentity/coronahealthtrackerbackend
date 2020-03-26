@@ -103,7 +103,7 @@ spec:
           image: mtagab/skeleton:latest
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8080
               protocol: TCP
           env:
             - name: AUTHORIZATION_SERVER
