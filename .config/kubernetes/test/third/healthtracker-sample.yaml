@@ -103,7 +103,7 @@ spec:
           image: mtagab/skeleton:latest
           ports:
             - name: http
-              containerPort: 8080
+              containerPort: 80
               protocol: TCP
           env:
             - name: AUTHORIZATION_SERVER
@@ -124,13 +124,13 @@ spec:
           livenessProbe:
             httpGet:
               path: /actuator/health
-              port: 8080
+              port: 80
             initialDelaySeconds: 5
             periodSeconds: 15
           readinessProbe:
             httpGet:
               path: /actuator/health
-              port: 8080
+              port: 80
             periodSeconds: 15
             timeoutSeconds: 1
 ---
@@ -146,8 +146,8 @@ spec:
   clusterIP: 10.110.4.0
   ports:
     - name: http
-      port: 8080
-      targetPort: 8080
+      port: 80
+      targetPort: 80
       protocol: TCP
   type: ClusterIP
 ---
