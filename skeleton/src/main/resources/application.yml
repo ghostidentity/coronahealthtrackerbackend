@@ -19,6 +19,9 @@ spring:
             user-name-attribute: user_name
   profiles:
     active: kubernetes
+  data:
+    rest:
+      base-path: /api
 
 server:
   port: 8080
@@ -37,3 +40,4 @@ management:
       enabled: true
     info:
       enabled: true
+
