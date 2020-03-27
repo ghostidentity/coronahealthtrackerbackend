@@ -31,11 +31,9 @@ management:
   endpoints:
     web:
       exposure:
-        include: info,health,refresh,keepalive
+        include: info,health
   endpoint:
     health:
       enabled: true
     info:
-      enabled: true
-    restart:
       enabled: true
