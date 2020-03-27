@@ -6,5 +6,5 @@ USER spring:spring
 WORKDIR $APP_HOME
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
-EXPOSE 8080
+EXPOSE 80
 ENTRYPOINT ["java","-jar","/opt/mtagab/healthtracker/app.jar"]
