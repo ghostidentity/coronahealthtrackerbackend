@@ -10,7 +10,7 @@ spring:
             client-secret: dWzCGD4Zfx4Dg5p5
             scope: read,write,foo
             authorization-grant-type: authorization_code
-            redirect-uri: http://viper/main
+            redirect-uri: http://viper/oath
         provider:
           custom:
             authorization-uri: http://${AUTHORIZATION_SERVER}:7070/authserver/oauth/authorize
