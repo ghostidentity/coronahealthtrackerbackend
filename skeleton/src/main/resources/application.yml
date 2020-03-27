@@ -6,11 +6,11 @@ spring:
       client:
         registration:
           custom:
-            client-id: authserverD
-            client-secret: authserverDPass
+            client-id: healthtracker
+            client-secret: dWzCGD4Zfx4Dg5p5
             scope: read,write,foo
             authorization-grant-type: authorization_code
-            redirect-uri: http://viper/main
+            redirect-uri: http://viper:8080/main
         provider:
           custom:
             authorization-uri: http://${AUTHORIZATION_SERVER}:7070/authserver/oauth/authorize
@@ -21,7 +21,7 @@ spring:
     active: kubernetes
 
 server:
-  port: 80
+  port: 8080
   servlet:
     context-path: /
   error:

@@ -38,8 +38,8 @@ public class AuthServerConfigurer extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(final ClientDetailsServiceConfigurer clients) throws Exception { // @formatter:off
         clients.inMemory()
-                .withClient("authserverD")
-                .secret(passwordEncoder().encode("authserverDPass"))
+                .withClient("healthtracker")
+                .secret(passwordEncoder().encode("dWzCGD4Zfx4Dg5p5"))
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token", "client_credentials")
                 .scopes("foo", "read", "write")
                 .autoApprove(false)

@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: website
+  name: websiteapp
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      run: website
+  replicas: 1
+  template:
+    metadata:
+      name: website
+      labels:
+        run: website
+        app: website
+    spec:
+      containers:
+        - name: website-container
+          image: mtagab/skeleton:latest
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            - name: AUTHORIZATION_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  name: skeleton-config
+                  key: authorization_server
+            - name: RESOURCE_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  name: skeleton-config
+                  key: resource_server
+            - name: REDIRECTION
+              valueFrom:
+                configMapKeyRef:
+                  name: website-config
+                  key: redirection_uri
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            periodSeconds: 30
+            timeoutSeconds: 1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: website
+  labels:
+    app: website
+spec:
+  selector:
+    app: website
+  clusterIP: 10.110.4.0
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+      protocol: TCP
+  type: ClusterIP
