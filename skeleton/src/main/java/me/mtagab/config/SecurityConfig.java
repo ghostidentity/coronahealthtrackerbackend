@@ -18,16 +18,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests()
+        http
+                .csrf().disable()
+                .authorizeRequests()
                 .antMatchers("/oath").permitAll()
-                .antMatchers(HttpMethod.GET, "/index*", "/static/**", "/*.js", "/*.json", "/*.ico").permitAll()
-                .antMatchers("/", "/login").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/assets/**", "/static/**", "/*.js", "/*.json", "/*.ico").permitAll()
+                .antMatchers("/", "/login*").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("index.html")
-                .loginProcessingUrl("/login")
+                .formLogin().loginPage("/login")
+                .failureUrl("/login?error")
                 .defaultSuccessUrl("/main", true)
-                .failureUrl("error.html");
+                .permitAll();
     }
 
     @Bean
