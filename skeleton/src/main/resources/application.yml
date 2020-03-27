@@ -32,7 +32,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: info,health
+        include: info,health,refresh,keepalive
   endpoint:
     health:
       enabled: true
