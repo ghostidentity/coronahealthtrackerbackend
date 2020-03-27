@@ -19,7 +19,7 @@ public class TestController {
     @GetMapping("/main")
     ResponseEntity<String> customHeader() {
 
-        Foo foo = restTemplate.getForEntity("http://localhost:9000/resource/foos/1", Foo.class).getBody();
+       // Foo foo = restTemplate.getForEntity("http://localhost:9000/resource/foos/1", Foo.class).getBody();
 
         return ResponseEntity.ok()
                 .header("Custom-Header", "foo")
