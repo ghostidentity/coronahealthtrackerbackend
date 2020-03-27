@@ -22,14 +22,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(final HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/oath/**").permitAll()
+                .antMatchers("/", "/actuator/**", "/oath/**").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/actuator/**").permitAll()
+                .antMatchers(
+                        "/secured/**/**",
+                        "/secured/success",
+                        "/secured/socket",
+                        "/secured/success").authenticated()
                 .antMatchers(HttpMethod.GET, "/assets/**", "/static/**", "/*.js", "/*.json", "/*.ico").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login")
-                .failureUrl("/login?error")
+                .loginProcessingUrl("login")
+                .failureUrl("/login?er/ror")
+                .usernameParameter("username")
+                .passwordParameter("password")
                 .defaultSuccessUrl("/main", true)
                 .permitAll();
 
