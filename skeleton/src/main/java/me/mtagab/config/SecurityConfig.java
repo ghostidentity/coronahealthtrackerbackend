@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/actuator/**", "/oath/**", "/api/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/assets/**", "/public/**", "/*.js", "/*.json", "/*.ico").permitAll()
+                .antMatchers(HttpMethod.GET, "/assets/**", "/static/**", "/*.js", "/*.json", "/*.ico").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login")
