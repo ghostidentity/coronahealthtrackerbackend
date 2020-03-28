@@ -29,7 +29,7 @@ spring:
     add-mappings: false
 
 spa:
-  default-file: file:src/main/resources/public/index.html
+  default-file: classpath:/public/index.html
 
 server:
   port: 8080
