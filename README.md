@@ -15,9 +15,14 @@ An application that will allow government agencies to track person(s) suspected 
         - Framework
             - Spring Boot
             - Spring Cloud
+                - Ribbon
+                - Hystrix
     - User Interface
         - Framework
             - React
+                - Axios
+                - Redux
+                - Material UI
     - Mobile
         - Android
     - Database
@@ -31,6 +36,8 @@ An application that will allow government agencies to track person(s) suspected 
         - Flyway
     - Continous Integration / Deployment
         - Circle CI
+    - Security
+        - Oath2 
 
 *Modules*:
 
@@ -40,7 +47,8 @@ An application that will allow government agencies to track person(s) suspected 
     - Infection Service
     - Notification Service
     - Person Service
-    - Security Service
+    - Authentication Service
+    - Resource Service
 
 *Architect: Mark Tagab*
 

@@ -1,17 +1,22 @@
-minikube --memory 8192 --cpus 2 start
 
+START THE SERVER
+minikube --memory 3000 --cpus 2 start
 
-
+ENABLE ADDON
 minikube addons enable ingress
-kubectl get pods -n kube-system
+
+CREATE ELEVATED ROLE
 kubectl create clusterrolebinding admin --clusterrole=cluster-admin --serviceaccount=default:default
 
-
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.30.0/deploy/static/provider/baremetal/service-nodeport.yaml
+DEPLOY MANDATORY SCRIPTS FOR INGRESS TO WORK
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.30.0/deploy/static/mandatory.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.30.0/deploy/static/provider/baremetal/service-nodeport.yaml
 
+VERIFY INGRESS PROCESS
+kubectl get pods -n kube-system
 kubectl get pods --all-namespaces -l app.kubernetes.io/name=ingress-nginx --watch
 
 
+ENABLE FORWARDING (FOR DEVELOPMENT)
 #docker run --publish=8081:8081 mtagab/account:latest
-#kubectl port-forward frontendapp-5f748bcc9b-j2tlx 8080:8080
+#kubectl port-forward websiteapp-77bf78b7bd-95wpn 8080:80

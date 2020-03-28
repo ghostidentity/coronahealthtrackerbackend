@@ -19,10 +19,6 @@ jobs:
         run: |
           mvn -B package --file ./account/pom.xml
           mv ./account/target/*.jar ./account/target/account.jar
-      - name: Gateway Service
-        run: |
-          mvn -B package --file ./gateway/pom.xml
-          mv ./gateway/target/*.jar ./gateway/target/gateway.jar
       - name: Government Service
         run: |
           mvn -B package --file ./government/pom.xml
@@ -39,28 +35,23 @@ jobs:
         run: |
           mvn -B package --file ./notification/pom.xml
           mv ./notification/target/*.jar ./notification/target/notification.jar
-      - name: Security Service
+      - name: Authentication Service
         run: |
-          mvn -B package --file ./security/pom.xml
-          mv ./security/target/*.jar ./security/target/security.jar
+          mvn -B package --file ./security/authentication/pom.xml
+          mv ./security/target/*.jar ./security/authentication/target/authentication.jar
+      - name: Resource Service
+        run: |
+          mvn -B package --file ./security/resource/pom.xml
+          mv ./security/target/*.jar ./security/resource/target/resource.jar
       - name: User Service
         run: |
           mvn -B package --file ./travel/pom.xml
-          mv ./travel/target/*.jar ./travel/target/travel.jar
-      - name: UI Service
-        run: |
-          mvn -B package --file ./website/pom.xml
           mv ./travel/target/*.jar ./travel/target/travel.jar
       - name: Account Packager
         uses: actions/upload-artifact@v1
         with:
           name: Account
           path: ./account/target/account.jar
-      - name: Gateway Packager
-        uses: actions/upload-artifact@v1
-        with:
-          name: Gateway
-          path: ./gateway/target/gateway.jar
       - name: Government Packager
         uses: actions/upload-artifact@v1
         with:
@@ -76,11 +67,16 @@ jobs:
         with:
           name: Notification
           path: ./notification/target/notification.jar
-      - name: Security Packager
+      - name: Authentication Packager
         uses: actions/upload-artifact@v1
         with:
-          name: Security
-          path: ./security/target/security.jar
+          name: Authentication
+          path: ./security/authentication/target/authentication.jar
+      - name: Resource Packager
+        uses: actions/upload-artifact@v1
+        with:
+          name: Resource
+          path: ./security/resource/target/resource.jar
       - name: Hpspital Packager
         uses: actions/upload-artifact@v1
         with:
@@ -109,12 +105,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mvn clean deploy --file ./account/pom.xml
-      - name: Deploying Gateway Service
-        env:
-          GITHUB_USERNAME: x-access-token
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          mvn clean deploy --file ./gateway/pom.xml
       - name: Deploying Government Service
         env:
           GITHUB_USERNAME: x-access-token
@@ -133,12 +123,18 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mvn clean deploy --file ./notification/pom.xml
-      - name: Deploying Security Service
+      - name: Deploying Authentication Service
         env:
           GITHUB_USERNAME: x-access-token
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          mvn clean deploy --file ./security/pom.xml
+          mvn clean deploy --file ./security/authentication/pom.xml
+      - name: Deploying Resource Service
+        env:
+          GITHUB_USERNAME: x-access-token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mvn clean deploy --file ./security/resource/pom.xml
       - name: Deploying Hospital Service
         env:
           GITHUB_USERNAME: x-access-token

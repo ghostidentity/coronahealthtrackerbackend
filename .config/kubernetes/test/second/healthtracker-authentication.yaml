@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: authentication
+  name: authenticationapp
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      run: authentication
+  replicas: 1
+  template:
+    metadata:
+      name: authentication
+      labels:
+        run: authentication
+        app: authentication
+    spec:
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: healthtracker-pv-claim
+      containers:
+        - name: authentication-container
+          image: mtagab/authentication:latest
+          ports:
+            - name: authentication
+              containerPort: 7070
+              protocol: TCP
+          imagePullPolicy: Always
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: account-credential
+                  key: database-user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: account-credential
+                  key: database-password
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: authentication-config
+                  key: database_host
+            - name: POSTGRES_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: authentication-config
+                  key: database_name
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 7070
+            initialDelaySeconds: 5
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 7070
+            periodSeconds: 30
+            timeoutSeconds: 1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: authentication
+  labels:
+    app: authentication
+spec:
+  selector:
+    app: authentication
+  clusterIP: 10.110.2.0
+  ports:
+    - name: authentication
+      port: 7070
+      targetPort: 7070
+      protocol: TCP
+  type: ClusterIP

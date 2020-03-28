@@ -26,8 +26,16 @@ build:
       context: person
       docker:
         dockerfile: Dockerfile
-    - image: mtagab/security
-      context: security
+    - image: mtagab/authentication
+      context: security/authentication
+      docker:
+        dockerfile: Dockerfile
+    - image: mtagab/resource
+      context: security/resource
+      docker:
+        dockerfile: Dockerfile
+    - image: mtagab/skeleton
+      context: skeleton
       docker:
         dockerfile: Dockerfile
   tagPolicy:

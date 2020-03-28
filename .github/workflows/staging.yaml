@@ -40,9 +40,6 @@ jobs:
       - name: Account Service
         run: |
           mvn test --file ./account/pom.xml
-      - name: Gateway Service
-        run: |
-          mvn test --file ./gateway/pom.xml
       - name: Government Service
         run: |
           mvn test --file ./government/pom.xml
@@ -52,18 +49,21 @@ jobs:
       - name: Notification Service
         run: |
           mvn test --file ./notification/pom.xml
-      - name: Security Service
+      - name: Authentication Service
         run: |
-          mvn test --file ./security/pom.xml
+          mvn test --file ./security/authentication/pom.xml
+      - name: Resource Service
+        run: |
+          mvn test --file ./security/resource/pom.xml
       - name: Hospital Service
         run: |
           mvn test --file ./hospital/pom.xml
       - name: User Service
         run: |
           mvn test --file ./person/pom.xml
-      - name: UI Service
+      - name: Skeleton Service
         run: |
-          mvn test --file ./website/pom.xml
+          mvn test --file ./skeleton/pom.xml
   docker:
     runs-on: [ubuntu-latest]
     steps:
@@ -76,21 +76,16 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Building website image ...
+      - name: Building skeleton image ...
         run: |
-          mvn clean --file ./website/pom.xml
-          mvn -B package --file ./website/pom.xml
-          docker build ./website -t mtagab/website:latest
+          mvn clean --file ./skeleton/pom.xml
+          mvn -B package --file ./skeleton/pom.xml
+          docker build ./skeleton -t mtagab/skeleton:latest
       - name: Building account image ...
         run: |
           mvn clean --file ./account/pom.xml
           mvn -B package --file ./account/pom.xml
           docker build ./account -t mtagab/account:latest
-      - name: Building gateway image ...
-        run: |
-          mvn clean --file ./gateway/pom.xml
-          mvn -B package --file ./gateway/pom.xml
-          docker build ./gateway -t mtagab/gateway:latest
       - name: Building government image ...
         run: |
           mvn clean --file ./government/pom.xml
@@ -106,11 +101,16 @@ jobs:
           mvn clean --file ./notification/pom.xml
           mvn -B package --file ./notification/pom.xml
           docker build ./notification -t mtagab/notification:latest
-      - name: Building security image ...
+      - name: Building authentication image ...
         run: |
-          mvn clean --file ./security/pom.xml
-          mvn -B package --file ./security/pom.xml
-          docker build ./security -t mtagab/security:latest
+          mvn clean --file ./security/authentication/pom.xml
+          mvn -B package --file ./security/authentication/pom.xml
+          docker build ./security/authentication -t mtagab/authentication:latest
+      - name: Building resource image ...
+        run: |
+          mvn clean --file ./security/resource/pom.xml
+          mvn -B package --file ./security/resource/pom.xml
+          docker build ./security/resource -t mtagab/resource:latest
       - name: Building hospital image ...
         run: |
           mvn clean --file ./hospital/pom.xml
@@ -127,12 +127,12 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run:  |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+          docker push mtagab/skeleton:latest
           docker push mtagab/account:latest
-          docker push mtagab/gateway:latest
           docker push mtagab/government:latest
           docker push mtagab/infection:latest
           docker push mtagab/notification:latest
-          docker push mtagab/security:latest
+          docker push mtagab/authentication:latest
+          docker push mtagab/resource:latest
           docker push mtagab/hospital:latest
           docker push mtagab/person:latest
-          docker push mtagab/website:latest

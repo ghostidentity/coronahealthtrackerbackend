@@ -10,6 +10,8 @@ spring:
     kubernetes:
       discovery:
         all-namespaces: true
+      reload:
+        enabled: true
   jpa:
     hibernate:
       ddl-auto: validate
@@ -41,10 +43,20 @@ logging:
     console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
 
 management:
+  endpoint:
+    health:
+      show-details: ALWAYS
+      enabled: true
+    info:
+      enabled: true
+    restart:
+      enabled: true
   endpoints:
     web:
       exposure:
         include: info,health,flyway
-  endpoint:
-    health:
-      show-details: ALWAYS
+
+ribbon:
+  http:
+    client:
+      enabled: true

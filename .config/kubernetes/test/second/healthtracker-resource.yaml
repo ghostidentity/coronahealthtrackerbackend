@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: resource
+  name: resourceapp
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      run: resource
+  replicas: 1
+  template:
+    metadata:
+      name: resource
+      labels:
+        run: resource
+        app: resource
+    spec:
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: healthtracker-pv-claim
+      containers:
+        - name: resource-container
+          image: mtagab/resource:latest
+          ports:
+            - name: resource
+              containerPort: 9000
+              protocol: TCP
+          imagePullPolicy: Always
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: account-credential
+                  key: database-user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: account-credential
+                  key: database-password
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: resource-config
+                  key: database_host
+            - name: POSTGRES_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: resource-config
+                  key: database_name
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 9000
+            initialDelaySeconds: 5
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 9000
+            periodSeconds: 30
+            timeoutSeconds: 1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: resource
+  labels:
+    app: resource
+spec:
+  selector:
+    app: resource
+  clusterIP: 10.110.3.0
+  ports:
+    - name: resource
+      port: 9000
+      targetPort: 9000
+      protocol: TCP
+  type: ClusterIP

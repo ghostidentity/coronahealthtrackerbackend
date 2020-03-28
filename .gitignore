@@ -1,0 +1,15 @@
+/account/target/**
+/government/target/**
+/hospital/target/**
+/infection/target/**
+/notification/target/**
+/person/target/**
+/security/target/**
+
+/account/account.iml
+/government/government.iml
+/hospital/hospital.iml
+/infection/infection.iml
+/notification/target/
+/person/person.iml
+/security/security.iml

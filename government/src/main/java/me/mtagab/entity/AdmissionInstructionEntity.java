@@ -8,7 +8,7 @@ import java.util.Date;
 public class AdmissionInstructionEntity {
 
     @Column(name = "userId")
-    private Integer userId;
+    private Long userId;
 
     @Column(name = "contactPerson")
     private String contactPerson;
@@ -20,11 +20,13 @@ public class AdmissionInstructionEntity {
     private String status;
 
     @Column(name = "validatedBy")
-    private Integer validatedBy;
+    private Long validatedBy;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "requestedOn")
     private Date requestedOn;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "pickupDateTime")
     private Date pickupDateTime;
 
