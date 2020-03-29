@@ -41,6 +41,7 @@ public class NotificationController {
     @RequestMapping(value = "/api/notify", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<String> createMessage() {
+        logger.info("WS message");
         Sample sample = new Sample("Hi!");
 
         messagingTemplate.convertAndSend("/topic/all", sample);
