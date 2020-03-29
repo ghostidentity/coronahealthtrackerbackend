@@ -27,6 +27,6 @@ public class HttpHandshakeInterceptor implements HandshakeInterceptor {
     }
 
     public void afterHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Exception ex) {
-        logger.info(String.valueOf(response.getHeaders())); //TODO
+       //TODO
     }
 }
