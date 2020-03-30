@@ -25,7 +25,7 @@ An application that will allow government agencies to track person(s) suspected 
             - React
                 - Axios
                 - Redux
-                - Material UI
+                - Semantic UI
                 - React-Stomp
                 - React-Spring
     - Mobile
@@ -54,6 +54,7 @@ An application that will allow government agencies to track person(s) suspected 
     - Person Service
     - Authentication Service
     - Resource Service
+    - Skeleton Service
 
 *Architect: Mark Tagab*
 
