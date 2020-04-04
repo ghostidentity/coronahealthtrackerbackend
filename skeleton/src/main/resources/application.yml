@@ -10,7 +10,8 @@ spring:
             client-secret: dWzCGD4Zfx4Dg5p5
             scope: read,write,foo
             authorization-grant-type: authorization_code
-            redirect-uri: http://viper/oath
+            redirect-uri: http://viper/main
+            #redirect-uri: http://viper/api/oath
         provider:
           custom:
             authorization-uri: http://${AUTHORIZATION_SERVER}:7070/authserver/oauth/authorize
@@ -19,9 +20,17 @@ spring:
             user-name-attribute: user_name
   profiles:
     active: kubernetes
-  data:
-    rest:
-      base-path: /api
+
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    static-locations: classpath:/public/
+    cache:
+      period: 0s
+    add-mappings: false
+
+spa:
+  default-file: classpath:/public/index.html
 
 server:
   port: 8080
@@ -29,6 +38,7 @@ server:
     context-path: /
   error:
     include-stacktrace: on_trace_param
+
 
 management:
   endpoints:
@@ -40,4 +50,7 @@ management:
       enabled: true
     info:
       enabled: true
+
+
+
 

@@ -14,6 +14,9 @@ An application that will allow government agencies to track person(s) suspected 
     - Backend
         - Framework
             - Spring Boot
+                - Websocket
+                - Lombok
+                - Junit
             - Spring Cloud
                 - Ribbon
                 - Hystrix
@@ -22,7 +25,9 @@ An application that will allow government agencies to track person(s) suspected 
             - React
                 - Axios
                 - Redux
-                - Material UI
+                - Semantic UI
+                - React-Stomp
+                - React-Spring
     - Mobile
         - Android
     - Database
@@ -49,6 +54,7 @@ An application that will allow government agencies to track person(s) suspected 
     - Person Service
     - Authentication Service
     - Resource Service
+    - Skeleton Service
 
 *Architect: Mark Tagab*
 

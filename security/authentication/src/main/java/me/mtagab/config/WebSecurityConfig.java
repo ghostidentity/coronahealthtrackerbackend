@@ -42,7 +42,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // @formatter:off
         http.authorizeRequests()
                 .antMatchers("/*").permitAll()
-                .antMatchers("/login").permitAll()
                 .antMatchers("/oauth/token/revokeById/**").permitAll()
                 .antMatchers("/tokens/**").permitAll()
                 .antMatchers("/actuator/**").permitAll()
