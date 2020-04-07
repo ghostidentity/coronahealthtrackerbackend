@@ -1,0 +1,12 @@
+/home/mtagab/Documents/projects/ncov/security/resource/src/main/java/me/mtagab/controller/BarController.java
+/home/mtagab/Documents/projects/ncov/security/resource/src/main/java/me/mtagab/model/Person.java
+/home/mtagab/Documents/projects/ncov/security/resource/src/main/java/me/mtagab/controller/FooController.java
+/home/mtagab/Documents/projects/ncov/security/resource/src/main/java/me/mtagab/config/MethodSecurityConfig.java
+/home/mtagab/Documents/projects/ncov/security/resource/src/main/java/me/mtagab/dto/Bar.java
+/home/mtagab/Documents/projects/ncov/security/resource/src/main/java/me/mtagab/config/ResourceServerWebConfig.java
+/home/mtagab/Documents/projects/ncov/security/resource/src/main/java/me/mtagab/config/CorsFilter.java
+/home/mtagab/Documents/projects/ncov/security/resource/src/main/java/me/mtagab/controller/UserController.java
+/home/mtagab/Documents/projects/ncov/security/resource/src/main/java/me/mtagab/config/OAuth2ResourceServerConfigJwt.java
+/home/mtagab/Documents/projects/ncov/security/resource/src/main/java/me/mtagab/dto/Foo.java
+/home/mtagab/Documents/projects/ncov/security/resource/src/main/java/me/mtagab/config/CustomAccessTokenConverter.java
+/home/mtagab/Documents/projects/ncov/security/resource/src/main/java/me/mtagab/ResourceServerApplication.java
