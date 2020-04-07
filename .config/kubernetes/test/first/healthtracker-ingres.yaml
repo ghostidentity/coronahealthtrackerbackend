@@ -5,12 +5,13 @@ metadata:
   namespace: default
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: nginx
 spec:
   backend:
     serviceName: website
     servicePort: 8080
   rules:
-    - host: viper
+    - host: ncovtracker.xyz
       http:
         paths:
           - path: /account(/|$)(.*)

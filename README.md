@@ -6,9 +6,14 @@ An application that will allow government agencies to track person(s) suspected 
 
 *Technologies*:
 
+    - Cloud Provider
+        - Digital Ocean
     - Container Orchestration
         - Kubernetes
             - Ingress
+            - Helm
+            - Tiller
+            - Certificate Manager
     - Container Technology
         - Docker
     - Backend

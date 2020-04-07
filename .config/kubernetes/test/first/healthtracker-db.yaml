@@ -53,7 +53,7 @@ metadata:
 spec:
   selector:
     app: postgres
-  clusterIP: 10.110.1.0
+  clusterIP: 10.245.1.0
   ports:
     - port: 5432
       targetPort: 5432
