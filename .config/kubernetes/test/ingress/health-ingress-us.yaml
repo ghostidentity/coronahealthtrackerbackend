@@ -23,6 +23,9 @@ metadata:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod-us
 spec:
+  backend:
+    serviceName: website
+    servicePort: 8080
   tls:
     - hosts:
         - us.ncovtracker.xyz

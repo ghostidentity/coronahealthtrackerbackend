@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: website
+  name: websiteapp
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      run: website
+  replicas: 1
+  template:
+    metadata:
+      name: website
+      labels:
+        run: website
+        app: website
+    spec:
+      containers:
+        - name: website-container
+          image: mtagab/frontend:latest
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: website
+  labels:
+    app: website
+spec:
+  selector:
+    app: website
+  clusterIP: 10.245.4.0
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+      protocol: TCP
+  type: ClusterIP
