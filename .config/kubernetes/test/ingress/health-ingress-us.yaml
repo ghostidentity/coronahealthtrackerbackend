@@ -1,0 +1,65 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod-us
+spec:
+  acme:
+    email: proxyshadow@gmail.com
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: healthtracker-us-tls
+    solvers:
+      - http01:
+          ingress:
+            class: nginx
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: us-healthtracker
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod-us
+spec:
+  tls:
+    - hosts:
+        - us.ncovtracker.xyz
+      secretName: healthtracker-us-tls
+  rules:
+    - host: us.ncovtracker.xyz
+      http:
+        paths:
+          - path: /account(/|$)(.*)
+            backend:
+              serviceName: account
+              servicePort: 8080
+          - path: /government(/|$)(.*)
+            backend:
+              serviceName: government
+              servicePort: 8080
+          - path: /infection
+            backend:
+              serviceName: infection
+              servicePort: 8080
+          - path: /notification
+            backend:
+              serviceName: notification
+              servicePort: 8080
+          - path: /authentication
+            backend:
+              serviceName: authentication
+              servicePort: 7070
+          - path: /resource
+            backend:
+              serviceName: resource
+              servicePort: 9000
+          - path: /hospital(/|$)(.*)
+            backend:
+              serviceName: hospital
+              servicePort: 8080
+          - path: /person(/|$)(.*)
+            backend:
+              serviceName: person
+              servicePort: 8080
