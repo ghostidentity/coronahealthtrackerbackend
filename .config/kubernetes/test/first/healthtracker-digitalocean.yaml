@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: digitalocean-config-ph
+  namespace: default
+data:
+  db_host: ncov-ph-do-user-2946816-0.a.db.ondigitalocean.com
+  db_port: 25060
+  db_username: doadmin
+  db_password: bziz8bp7uz1uh56u
+  account.properties: /
+    db_name: account
+  government.properties: /
+    db_name: government
+  hospital.properties: /
+    db_name: hospital
+  infection.properties: /
+    db_name: infection
+  notification.properties: /
+    db_name: notification
+  person.properties: /
+    db_name: person
+  resource.properties: /
+    db_name: resource
+  authentication.properties: /
+    db_name: authentication
