@@ -50,11 +50,6 @@ spec:
                 configMapKeyRef:
                   name: digitalocean-config-ph
                   key: db_account
-            - name: POSTGRES_PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: digitalocean-config-ph
-                  key: db_port
           livenessProbe:
             httpGet:
               path: /actuator/health

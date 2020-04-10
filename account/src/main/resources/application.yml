@@ -3,7 +3,7 @@ spring:
     name: account
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DATABASE}?sslcert=ca-certificate.crt&sslmode=require&useSSL=true
+    url: jdbc:postgresql://${POSTGRES_HOST}:25060/${POSTGRES_DATABASE}?sslcert=ca-certificate.crt&sslmode=require&useSSL=true
     username: ${POSTGRES_USER}
     password: ${POSTGRES_PASSWORD}
   jpa:
@@ -25,12 +25,8 @@ spring:
     installed-by: mtagab
     locations: classpath:db/migration
     validate-on-migrate: true
-  output:
-    ansi:
-      enabled: always
   profiles:
     active: kubernetes
-
 server:
   port: 8080
   error:
@@ -38,7 +34,7 @@ server:
 
 logging:
   pattern:
-    console: "%clr(%d{yy-MM-dd E HH:mm:ss.SSS}){blue} %clr(%-5p) %clr(${PID}){faint} %clr(---){faint} %clr([%8.15t]){cyan} %clr(%-40.40logger{0}){blue} %clr(:){red} %clr(%m){faint}%n"
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
 
 management:
   endpoints:
