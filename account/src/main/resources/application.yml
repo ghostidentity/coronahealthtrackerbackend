@@ -27,7 +27,7 @@ spring:
     ##    user: ${POSTGRES_USER}
     ##  password: ${POSTGRES_PASSWORD}
     ##  url: jdbc:postgresql://${POSTGRES_HOST}:5432/${POSTGRES_DATABASE}
-    schemas: public
+    schemas: account
     connectRetries: 10
     installed-by: mtagab
     locations: classpath:db/migration
