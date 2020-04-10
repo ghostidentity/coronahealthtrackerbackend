@@ -21,9 +21,11 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQL94Dialect
   flyway:
     enabled: true
-    user: ${POSTGRES_USER}
-    password: ${POSTGRES_PASSWORD}
+    user: doadmin
+    password: bziz8bp7uz1uh56u
     url: jdbc:postgresql://ncov-ph-do-user-2946816-0.a.db.ondigitalocean.com:25060/account
+    ##    user: ${POSTGRES_USER}
+    ##  password: ${POSTGRES_PASSWORD}
     ##  url: jdbc:postgresql://${POSTGRES_HOST}:5432/${POSTGRES_DATABASE}
     schemas: account
     connectRetries: 10
