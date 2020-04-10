@@ -7,11 +7,14 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/government</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="root@digitalocean.com" uuid="8d7b54e4-ba16-41e7-a3e1-e9d7765f143c">
+    <data-source source="LOCAL" name="mark@digitalocean.com" uuid="c76061df-e38f-44f1-b21c-bc5db9995878">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
+      <remarks>health tracker</remarks>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://ncov-ph-do-user-2946816-0.a.db.ondigitalocean.com:25060/account</jdbc-url>
+      <keep-alive enable="true" />
+      <auto-close enable="true" />
     </data-source>
   </component>
 </project>
