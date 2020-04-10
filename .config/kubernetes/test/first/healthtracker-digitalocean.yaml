@@ -5,8 +5,6 @@ metadata:
   namespace: default
 data:
   db_host: ncov-ph-do-user-2946816-0.a.db.ondigitalocean.com
-  db_username: doadmin
-  db_password: bziz8bp7uz1uh56u
   db_account: account
   db_authentication: authentication
   db_government: government
