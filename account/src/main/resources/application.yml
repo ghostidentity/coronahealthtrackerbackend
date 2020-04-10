@@ -3,10 +3,9 @@ spring:
     name: account
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://ncov-ph-do-user-2946816-0.a.db.ondigitalocean.com:25060/account?useSSL=true
+    url: jdbc:postgresql://private-ncov-ph-do-user-2946816-0.a.db.ondigitalocean.com:25060/account?useSSL=false
     username: doadmin
     password: bziz8bp7uz1uh56u
-
     ##    url: jdbc:postgresql://${POSTGRES_HOST}:5432/${POSTGRES_DATABASE}
     ##  username: ${POSTGRES_USER}
     ##  password: ${POSTGRES_PASSWORD}
@@ -16,14 +15,14 @@ spring:
       naming:
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    show-sql: false
-    generate-ddl: false
+    show-sql: true
+    generate-ddl: true
     database-platform: org.hibernate.dialect.PostgreSQL94Dialect
   flyway:
     enabled: true
     user: doadmin
     password: bziz8bp7uz1uh56u
-    url: jdbc:postgresql://ncov-ph-do-user-2946816-0.a.db.ondigitalocean.com:25060/account?useSSL=true
+    url: jdbc:postgresql://private-ncov-ph-do-user-2946816-0.a.db.ondigitalocean.com:25060/account?useSSL=false
     ##    user: ${POSTGRES_USER}
     ##  password: ${POSTGRES_PASSWORD}
     ##  url: jdbc:postgresql://${POSTGRES_HOST}:5432/${POSTGRES_DATABASE}
