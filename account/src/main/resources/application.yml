@@ -3,7 +3,7 @@ spring:
     name: account
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://private-ncov-ph-do-user-2946816-0.a.db.ondigitalocean.com:25060/account?sslcert=ca-certificate.crt&sslmode=require&ssl=true
+    url: jdbc:postgresql://doadmin:bziz8bp7uz1uh56u@private-ncov-ph-do-user-2946816-0.a.db.ondigitalocean.com:25060/defaultdb?sslcert=ca-certificate.crt&sslmode=require
 
     username: doadmin
     password: bziz8bp7uz1uh56u
@@ -23,7 +23,9 @@ spring:
     enabled: true
     user: doadmin
     password: bziz8bp7uz1uh56u
-    url: jdbc:postgresql://private-ncov-ph-do-user-2946816-0.a.db.ondigitalocean.com:25060/account?sslcert=ca-certificate.crt&sslmode=require&ssl=true
+
+    url: jdbc:postgresql://doadmin:bziz8bp7uz1uh56u@private-ncov-ph-do-user-2946816-0.a.db.ondigitalocean.com:25060/defaultdb?sslcert=ca-certificate.crt&sslmode=require
+    ## url: jdbc:postgresql://private-ncov-ph-do-user-2946816-0.a.db.ondigitalocean.com:25060/account?sslcert=ca-certificate.crt&sslmode=require&ssl=true
     ##    user: ${POSTGRES_USER}
     ##  password: ${POSTGRES_PASSWORD}
     ##  url: jdbc:postgresql://${POSTGRES_HOST}:5432/${POSTGRES_DATABASE}
