@@ -8,19 +8,20 @@ data:
   db_port: 25060
   db_username: doadmin
   db_password: bziz8bp7uz1uh56u
-  account.properties: /
-    db_name: account
-  government.properties: /
-    db_name: government
-  hospital.properties: /
-    db_name: hospital
-  infection.properties: /
-    db_name: infection
-  notification.properties: /
-    db_name: notification
-  person.properties: /
-    db_name: person
-  resource.properties: /
-    db_name: resource
-  authentication.properties: /
-    db_name: authentication
+  db_account: account
+  db_authentication: authentication
+  db_government: government
+  db_hospital: hospital
+  db_infection: infection
+  db_notification: notification
+  db_person: person
+  db_resource: resource
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: digitalocean-credential
+type: Opaque
+data:
+  db_user: mark
+  db_password: ncyl20u8xeof2314

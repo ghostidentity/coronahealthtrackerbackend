@@ -3,12 +3,9 @@ spring:
     name: account
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://private-ncov-ph-do-user-2946816-0.a.db.ondigitalocean.com:25060/account?sslcert=ca-certificate.crt&sslmode=require&useSSL=true
-    username: mark
-    password: ncyl20u8xeof2314
-    ##    url: jdbc:postgresql://${POSTGRES_HOST}:5432/${POSTGRES_DATABASE}
-    ##  username: ${POSTGRES_USER}
-    ##  password: ${POSTGRES_PASSWORD}
+    url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DATABASE}?sslcert=ca-certificate.crt&sslmode=require&useSSL=true
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: validate
@@ -20,20 +17,20 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQL94Dialect
   flyway:
     enabled: true
-    user: mark
-    password: ncyl20u8xeof2314
-    url: jdbc:postgresql://private-ncov-ph-do-user-2946816-0.a.db.ondigitalocean.com:25060/account?sslcert=ca-certificate.crt&sslmode=require&useSSL=true
-    ## url: jdbc:postgresql://private-ncov-ph-do-user-2946816-0.a.db.ondigitalocean.com:25060/account?sslcert=ca-certificate.crt&sslmode=require&ssl=true
-    ##    user: ${POSTGRES_USER}
-    ##  password: ${POSTGRES_PASSWORD}
-    ##  url: jdbc:postgresql://${POSTGRES_HOST}:5432/${POSTGRES_DATABASE}
+    url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DATABASE}?sslcert=ca-certificate.crt&sslmode=require&useSSL=true
+    USER: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
     schemas: public
     connectRetries: 10
     installed-by: mtagab
     locations: classpath:db/migration
     validate-on-migrate: true
+  output:
+    ansi:
+      enabled: always
   profiles:
     active: kubernetes
+
 server:
   port: 8080
   error:
@@ -41,7 +38,7 @@ server:
 
 logging:
   pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+    console: "%clr(%d{yy-MM-dd E HH:mm:ss.SSS}){blue} %clr(%-5p) %clr(${PID}){faint} %clr(---){faint} %clr([%8.15t]){cyan} %clr(%-40.40logger{0}){blue} %clr(:){red} %clr(%m){faint}%n"
 
 management:
   endpoints:

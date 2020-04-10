@@ -29,6 +29,32 @@ spec:
               containerPort: 8080
               protocol: TCP
           imagePullPolicy: Always
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: digitalocean-credential
+                  key: db_user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: digitalocean-credential
+                  key: db_password
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: digitalocean-config-ph
+                  key: db_host
+            - name: POSTGRES_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: digitalocean-config-ph
+                  key: db_account
+            - name: POSTGRES_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: digitalocean-config-ph
+                  key: db_port
           livenessProbe:
             httpGet:
               path: /actuator/health
