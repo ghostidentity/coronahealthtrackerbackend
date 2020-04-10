@@ -7,7 +7,7 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/government</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="mark@digitalocean.com" uuid="c76061df-e38f-44f1-b21c-bc5db9995878">
+    <data-source source="LOCAL" name="admin@digitalocean.com" uuid="c76061df-e38f-44f1-b21c-bc5db9995878">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <remarks>health tracker</remarks>
