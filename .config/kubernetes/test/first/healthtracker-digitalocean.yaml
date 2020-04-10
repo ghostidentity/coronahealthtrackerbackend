@@ -20,5 +20,5 @@ metadata:
   name: digitalocean-credential
 type: Opaque
 data:
-  db_user: mark
-  db_password: ncyl20u8xeof2314
+  db_user: bWFyaw==
+  db_password: bmN5bDIwdTh4ZW9mMjMxNA==
