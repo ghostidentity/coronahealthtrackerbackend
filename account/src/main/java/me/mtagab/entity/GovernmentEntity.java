@@ -3,7 +3,7 @@ package me.mtagab.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "government", schema = "account")
+@Table(name = "government", schema = "public")
 public class GovernmentEntity {
 
     @Column(name = "username")
