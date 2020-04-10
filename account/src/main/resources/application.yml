@@ -17,7 +17,7 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQL94Dialect
   flyway:
     enabled: true
-    url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DATABASE}?sslcert=ca-certificate.crt&sslmode=require&useSSL=true
+    url: jdbc:postgresql://${POSTGRES_HOST}:25060/${POSTGRES_DATABASE}?sslcert=ca-certificate.crt&sslmode=require&useSSL=true
     USER: ${POSTGRES_USER}
     password: ${POSTGRES_PASSWORD}
     schemas: public
