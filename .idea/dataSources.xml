@@ -7,5 +7,11 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/government</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="root@digitalocean.com" uuid="8d7b54e4-ba16-41e7-a3e1-e9d7765f143c">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://ncov-ph-do-user-2946816-0.a.db.ondigitalocean.com:25060/defaultdb</jdbc-url>
+    </data-source>
   </component>
 </project>
