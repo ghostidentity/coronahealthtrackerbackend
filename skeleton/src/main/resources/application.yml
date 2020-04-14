@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: development
+    active: kubernetes
 ---
 spring:
   application:
@@ -22,7 +22,6 @@ spring:
             token-uri: http://localhost:7070/authserver/oauth/token
             user-info-uri: http://localhost:9000/resource/users/extra
             user-name-attribute: user_name
-
   mvc:
     throw-exception-if-no-handler-found: true
   resources:

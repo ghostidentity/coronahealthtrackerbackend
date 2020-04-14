@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: development
+    active: kubernetes
 ---
 spring:
   application:
@@ -108,3 +108,6 @@ management:
       enabled: true
     flyway:
       enabled: true
+eureka:
+  client:
+    enabled: false

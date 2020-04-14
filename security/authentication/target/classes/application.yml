@@ -41,6 +41,10 @@ management:
       enabled: false
     flyway:
       enabled: false
+
+eureka:
+  client:
+    enabled: true
 ---
 spring:
   application:
@@ -108,3 +112,6 @@ management:
       enabled: true
     flyway:
       enabled: true
+eureka:
+  client:
+    enabled: false

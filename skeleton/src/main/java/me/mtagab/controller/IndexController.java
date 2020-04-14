@@ -21,13 +21,13 @@ public class IndexController {
     private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
     @RequestMapping(value = "/api/test", method = RequestMethod.GET)
-    public ResponseEntity<String> HomeController( Model model) {
+    public Foo HomeController( Model model) {
         logger.info("test..");
 
         Foo foo = restTemplate.getForEntity("http://localhost:9000/resource/foos/", Foo.class).getBody();
         model.addAttribute("foo", foo);
 
-        return ResponseEntity.ok().build();
+        return foo;
     }
 
     @GetMapping("/api/demo")

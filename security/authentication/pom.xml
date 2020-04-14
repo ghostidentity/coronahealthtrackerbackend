@@ -68,7 +68,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <profiles>
-                        <profile>development</profile>
+                        <profile>kubernetes</profile>
                     </profiles>
                     <addResources>true</addResources>
                 </configuration>
