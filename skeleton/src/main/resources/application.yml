@@ -10,8 +10,8 @@ spring:
             client-secret: dWzCGD4Zfx4Dg5p5
             scope: read,write,foo
             authorization-grant-type: authorization_code
-            redirect-uri: http://ncovtracker.xyz/main
-            #redirect-uri: http://viper/api/oath
+            redirect-uri:  http://viper.net/api/oath
+            #redirect-uri: http://viper.net/api/oath
         provider:
           custom:
             authorization-uri: http://${AUTHORIZATION_SERVER}:7070/authserver/oauth/authorize

@@ -11,7 +11,7 @@ spec:
     serviceName: website
     servicePort: 8080
   rules:
-    - host: ncovtracker.xyz
+    - host: viper.net
       http:
         paths:
           - path: /account(/|$)(.*)

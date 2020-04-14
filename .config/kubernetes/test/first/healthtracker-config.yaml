@@ -88,7 +88,7 @@ metadata:
   namespace: default
 data:
   database_name: authentication
-  database_host: 10.245.1.0
+  database_host: 10.110.1.0
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -97,7 +97,7 @@ metadata:
   namespace: default
 data:
   database_name: resource
-  database_host: 10.245.1.0
+  database_host: 10.110.1.0
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -105,8 +105,8 @@ metadata:
   name: skeleton-config
   namespace: default
 data:
-  authorization_server: 10.245.2.0
-  resource_server: 10.245.3.0
+  authorization_server: 10.110.2.0
+  resource_server: 10.110.3.0
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -114,4 +114,4 @@ metadata:
   name: website-config
   namespace: default
 data:
-  redirection_uri: 10.245.4.0
+  redirection_uri: 10.110.4.0

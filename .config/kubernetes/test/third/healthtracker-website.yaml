@@ -63,7 +63,7 @@ metadata:
 spec:
   selector:
     app: website
-  clusterIP: 10.245.4.0
+  clusterIP: 10.110.4.0
   ports:
     - name: http
       port: 8080

@@ -45,7 +45,7 @@ public class AuthServerConfigurer extends AuthorizationServerConfigurerAdapter {
                 .autoApprove(false)
                 .accessTokenValiditySeconds(3600)       // 1 hour
                 .refreshTokenValiditySeconds(2592000)  // 30 days
-                .redirectUris("http://ncovtracker.xyz/api/oath");
+                .redirectUris("http://viper.net/api/oath");
     } // @formatter:on
 
     @Bean
