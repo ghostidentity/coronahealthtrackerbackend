@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: development
+    active: kubernetes
 ---
 spring:
   application:
@@ -15,7 +15,6 @@ spring:
         enabled: false
   flyway:
     enabled: false
-
 server:
   servlet:
     context-path: /
