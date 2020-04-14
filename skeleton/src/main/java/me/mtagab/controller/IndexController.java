@@ -20,26 +20,11 @@ public class IndexController {
 
     private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
-/*
-    @GetMapping("/foos/{id}")
-    public String getFooResource(@PathVariable long id, Model model) {
-        Foo foo = restTemplate.getForEntity("http://localhost:9000/resource/foos/" + id, Foo.class).getBody();
-        model.addAttribute("foo", foo);
-        return "foo";
-    }
-
-    @PostMapping("/foos")
-    public String addNewFoo(Foo foo, Model model) {
-        Foo created = restTemplate.postForEntity("http://localhost:9000/resource/foos/", foo, Foo.class).getBody();
-        model.addAttribute("foo", created);
-        return "foo";
-    }*/
-
     @RequestMapping(value = "/api/test", method = RequestMethod.GET)
     public Foo HomeController( Model model) {
         logger.info("test..");
 
-        Foo foo = restTemplate.getForEntity("http://localhost:9000/resource/foos/", Foo.class).getBody();
+        Foo foo = restTemplate.getForEntity("http://10.110.1.0:9000/resource/foos/", Foo.class).getBody();
         model.addAttribute("foo", foo);
 
         return foo;
