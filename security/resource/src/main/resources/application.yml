@@ -1,3 +1,46 @@
+spring:
+  profiles:
+    active: development
+---
+spring:
+  application:
+    name: resource
+  profiles: development
+  cloud:
+    kubernetes:
+      discovery:
+        all-namespaces: false
+        enabled: false
+      config:
+        enabled: false
+  flyway:
+    enabled: false
+
+server:
+  servlet:
+    context-path: /
+    session:
+      cookie:
+        name: OAUTH2SESSION
+  port: 9000
+  error:
+    include-stacktrace: on_trace_param
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+
+management:
+  endpoint:
+    health:
+      enabled: false
+    beans:
+      enabled: false
+    info:
+      enabled: false
+    shutdown:
+      enabled: false
+---
 server:
   servlet:
     context-path: /
@@ -11,8 +54,7 @@ server:
 spring:
   application:
     name: resource
-  profiles:
-    active: kubernetes
+  profiles: kubernetes
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://${POSTGRES_HOST}:5432/${POSTGRES_DATABASE}

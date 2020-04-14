@@ -67,6 +67,9 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <profiles>
+                        <profile>development</profile>
+                    </profiles>
                     <addResources>true</addResources>
                 </configuration>
             </plugin>
