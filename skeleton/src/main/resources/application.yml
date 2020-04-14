@@ -67,15 +67,12 @@ spring:
             scope: read,write,foo
             authorization-grant-type: authorization_code
             redirect-uri:  http://viper.net/api/oath
-            #redirect-uri: http://viper.net/api/oath
         provider:
           custom:
             authorization-uri: http://${AUTHORIZATION_SERVER}:7070/authserver/oauth/authorize
             token-uri: http:// ${AUTHORIZATION_SERVER}:7070/authserver/oauth/token
             user-info-uri: http://${RESOURCE_SERVER}:9000/resource/users/extra
             user-name-attribute: user_name
-
-
   mvc:
     throw-exception-if-no-handler-found: true
   resources:
@@ -93,7 +90,6 @@ server:
     context-path: /
   error:
     include-stacktrace: on_trace_param
-
 
 management:
   endpoints:
